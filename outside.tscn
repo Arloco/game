@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxa7hrhxk3k01"]
+
+[ext_resource type="Script" path="res://Area2D.gd" id="1_cngqk"]
+[ext_resource type="PackedScene" uid="uid://c6wc7yepc8n6w" path="res://platform.tscn" id="2_a5exq"]
+[ext_resource type="PackedScene" uid="uid://bxjid3dng6x0i" path="res://character_body_2d.tscn" id="3_qpdha"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_buh25"]
+size = Vector2(193.75, 255)
+
+[node name="World" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_cngqk")
+
+[node name="Polygon2D" type="Polygon2D" parent="Area2D"]
+position = Vector2(-128, -8)
+polygon = PackedVector2Array(-133, -183, -144, 65, 262, 65, 202, -197, 292, -215, 194, -324, -32, -378, -227, -278, -270, -197)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-79, -51)
+shape = SubResource("RectangleShape2D_buh25")
+
+[node name="Platform" parent="." instance=ExtResource("2_a5exq")]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_qpdha")]
+position = Vector2(240, -8)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
