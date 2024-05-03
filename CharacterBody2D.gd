@@ -17,14 +17,15 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var object=preload("res://area_2d.tscn")
 
 
-
 	
 func _physics_process(delta):
-	# Add the gravity.
+	print (mana)
+	# Add the gravity
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
-	$/root/World/CharacterBody2D/Camera2D/HScrollBar.value = mana
+	#makes it so we can reference mana from either the outside or the inside if mana_inside == false:
+	$Camera2D/HScrollBar.value = mana
+	
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -65,15 +66,30 @@ func _physics_process(delta):
 			
 		
 	if shoot_right == true:
-		
 		instance.linear_velocity.x = bullet_speed
 		shoot_right = false
 		mana -= 10
 			
 	if shoot_left == true:
-		
 		instance.linear_velocity.x = -bullet_speed
+		instance.rotation = 820
 		shoot_left = false
 		mana -= 10
 
 
+
+
+func _on_enemy_body_entered(body):
+	print ("dead")
+	get_tree().reload_current_scene()
+	
+
+func _on_spring_body_entered(body):
+	velocity.y = -1000
+	print ("boing")
+
+
+
+func _on_tall_shroom_body_entered(body):
+	velocity.y = -1000
+	print ("boing")

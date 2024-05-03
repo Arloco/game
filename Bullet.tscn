@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwfg6lwg2ym26"]
 
-[ext_resource type="Texture2D" uid="uid://dl56eq1w4s0og" path="res://icon.svg" id="1_hakaj"]
+[ext_resource type="Texture2D" uid="uid://t7y1ubtx70ha" path="res://Bullet.png" id="1_dp1br"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uocd4"]
 size = Vector2(16, 16)
@@ -12,4 +12,4 @@ shape = SubResource("RectangleShape2D_uocd4")
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(0.099, 0.1)
-texture = ExtResource("1_hakaj")
+texture = ExtResource("1_dp1br")
