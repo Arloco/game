@@ -2,13 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://t7y1ubtx70ha" path="res://Bullet.png" id="1_dp1br"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uocd4"]
-size = Vector2(16, 16)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eydam"]
+radius = 20.0
+height = 93.5
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_uocd4")
+[node name="BulletHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(8, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_eydam")
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(0.099, 0.1)

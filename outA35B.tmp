@@ -1,0 +1,119 @@
+[gd_scene load_steps=17 format=3 uid="uid://bxa7hrhxk3k01"]
+
+[ext_resource type="Script" path="res://Area2D.gd" id="1_cngqk"]
+[ext_resource type="Texture2D" uid="uid://c8cqdp6wcosyf" path="res://1699985258292-db9d0f13-4e2b-4db7-9536-cbdd7e7586c2_1.jpg" id="1_ids88"]
+[ext_resource type="Script" path="res://outside.gd" id="1_lg33o"]
+[ext_resource type="PackedScene" uid="uid://c6wc7yepc8n6w" path="res://platform.tscn" id="2_a5exq"]
+[ext_resource type="Texture2D" uid="uid://c5chflwhldaut" path="res://finalShroomHouse.png" id="2_cxq14"]
+[ext_resource type="Texture2D" uid="uid://bu6dbgmhjoen6" path="res://DoorFinished.jpg" id="3_1pnwu"]
+[ext_resource type="PackedScene" uid="uid://bxjid3dng6x0i" path="res://character_body_2d.tscn" id="3_qpdha"]
+[ext_resource type="PackedScene" uid="uid://pd078ybsmqxo" path="res://enemy.tscn" id="6_i643u"]
+[ext_resource type="PackedScene" uid="uid://b5sretkyka12r" path="res://spring.tscn" id="7_akf3n"]
+[ext_resource type="PackedScene" uid="uid://lvqajlspi1bg" path="res://tall_shroom.tscn" id="8_gp6bx"]
+[ext_resource type="PackedScene" uid="uid://chpyp6r3mwv7l" path="res://hearts_container.tscn" id="10_spf20"]
+[ext_resource type="PackedScene" uid="uid://rx5dl0y4mmfj" path="res://manabar.tscn" id="11_rq5oe"]
+[ext_resource type="Texture2D" uid="uid://lo326cfecubi" path="res://lilshroom.png" id="13_0ys0b"]
+[ext_resource type="PackedScene" uid="uid://bk23dpsu7drho" path="res://fairy_apple.tscn" id="14_fuibi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_buh25"]
+size = Vector2(193.75, 255)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lxxdi"]
+radius = 59.0
+height = 392.0
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_lg33o")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+offset_left = -7322.0
+offset_top = -5378.0
+offset_right = 4743.0
+offset_bottom = 2807.0
+texture = ExtResource("1_ids88")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_cngqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(-65, -318)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_cxq14")
+
+[node name="DoorCollision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-25, -58)
+shape = SubResource("RectangleShape2D_buh25")
+
+[node name="DoorFinished" type="Sprite2D" parent="Area2D"]
+position = Vector2(-21, -65)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("3_1pnwu")
+
+[node name="Roof" type="Area2D" parent="."]
+position = Vector2(-79, -330)
+rotation = 1.5708
+
+[node name="RoofCollision" type="CollisionShape2D" parent="Roof"]
+shape = SubResource("CapsuleShape2D_lxxdi")
+
+[node name="Platform" parent="." instance=ExtResource("2_a5exq")]
+
+[node name="Obstacles" type="Node" parent="."]
+
+[node name="Enemy" parent="Obstacles" instance=ExtResource("6_i643u")]
+position = Vector2(-511, -178)
+
+[node name="Enemy2" parent="Obstacles" instance=ExtResource("6_i643u")]
+position = Vector2(759, -342)
+
+[node name="Spring" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(353, 40)
+
+[node name="Spring2" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(628, 41)
+
+[node name="Spring3" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(1228, -73)
+
+[node name="TallShroom" parent="Obstacles" instance=ExtResource("8_gp6bx")]
+position = Vector2(-410, -250)
+rotation = -0.0872665
+
+[node name="Player" parent="." instance=ExtResource("3_qpdha")]
+z_index = 100
+position = Vector2(-123, -11)
+max_health = null
+mana = null
+bullet_speed = null
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HeartsContainer" parent="UI" instance=ExtResource("10_spf20")]
+
+[node name="ManaBar" parent="UI" instance=ExtResource("11_rq5oe")]
+offset_left = 32.0
+offset_top = 545.0
+offset_right = 296.0
+offset_bottom = 617.0
+
+[node name="Lilshroom" type="Sprite2D" parent="."]
+z_index = 101
+position = Vector2(-511, 22)
+rotation = 0.0523599
+scale = Vector2(0.141954, 0.141954)
+texture = ExtResource("13_0ys0b")
+
+[node name="FairyApple" parent="." instance=ExtResource("14_fuibi")]
+position = Vector2(492, 4)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
+[connection signal="body_entered" from="Roof" to="Player" method="_on_roof_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy2" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring2" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring3" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/TallShroom" to="Player" method="_on_tall_shroom_body_entered"]
+[connection signal="body_entered" from="FairyApple" to="Player" method="_on_fairy_apple_body_entered"]

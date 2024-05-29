@@ -11,6 +11,7 @@ func _process(delta):
 func _on_body_entered(body):
 	if body.name == "CharacterBody2D":
 		door_open = true
+		print ("open")
 
 
 func _on_body_exited(body):

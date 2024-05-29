@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://bxa7hrhxk3k01"]
+
+[ext_resource type="Script" path="res://Area2D.gd" id="1_cngqk"]
+[ext_resource type="Texture2D" uid="uid://c8cqdp6wcosyf" path="res://1699985258292-db9d0f13-4e2b-4db7-9536-cbdd7e7586c2_1.jpg" id="1_ids88"]
+[ext_resource type="PackedScene" uid="uid://c6wc7yepc8n6w" path="res://platform.tscn" id="2_a5exq"]
+[ext_resource type="Texture2D" uid="uid://c5chflwhldaut" path="res://finalShroomHouse.png" id="2_cxq14"]
+[ext_resource type="Texture2D" uid="uid://bu6dbgmhjoen6" path="res://DoorFinished.jpg" id="3_1pnwu"]
+[ext_resource type="PackedScene" uid="uid://bxjid3dng6x0i" path="res://character_body_2d.tscn" id="3_qpdha"]
+[ext_resource type="PackedScene" uid="uid://pd078ybsmqxo" path="res://enemy.tscn" id="6_i643u"]
+[ext_resource type="PackedScene" uid="uid://b5sretkyka12r" path="res://spring.tscn" id="7_akf3n"]
+[ext_resource type="PackedScene" uid="uid://lvqajlspi1bg" path="res://tall_shroom.tscn" id="8_gp6bx"]
+[ext_resource type="PackedScene" uid="uid://chpyp6r3mwv7l" path="res://hearts_container.tscn" id="10_spf20"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_buh25"]
+size = Vector2(193.75, 255)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lxxdi"]
+radius = 59.0
+height = 392.0
+
+[node name="World" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -7814.0
+offset_top = -5382.0
+offset_right = 4251.0
+offset_bottom = 2803.0
+texture = ExtResource("1_ids88")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_cngqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(-65, -318)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_cxq14")
+
+[node name="DoorCollision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-25, -58)
+shape = SubResource("RectangleShape2D_buh25")
+
+[node name="DoorFinished" type="Sprite2D" parent="Area2D"]
+position = Vector2(-21, -65)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("3_1pnwu")
+
+[node name="Roof" type="Area2D" parent="."]
+position = Vector2(-79, -330)
+rotation = 1.5708
+
+[node name="RoofCollision" type="CollisionShape2D" parent="Roof"]
+shape = SubResource("CapsuleShape2D_lxxdi")
+
+[node name="Platform" parent="." instance=ExtResource("2_a5exq")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Enemy" parent="." instance=ExtResource("6_i643u")]
+position = Vector2(-511, -178)
+
+[node name="Enemy2" parent="." instance=ExtResource("6_i643u")]
+position = Vector2(759, -342)
+
+[node name="Spring" parent="." instance=ExtResource("7_akf3n")]
+position = Vector2(353, 40)
+
+[node name="Spring2" parent="." instance=ExtResource("7_akf3n")]
+position = Vector2(628, 41)
+
+[node name="Spring3" parent="." instance=ExtResource("7_akf3n")]
+position = Vector2(1228, -73)
+
+[node name="TallShroom" parent="." instance=ExtResource("8_gp6bx")]
+position = Vector2(-410, -244)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_qpdha")]
+position = Vector2(-123, -11)
+max_health = 3
+mana = 100
+bullet_speed = 1000
+
+[node name="HeartsContainer" parent="." instance=ExtResource("10_spf20")]
+offset_left = -1454.0
+offset_top = -232.0
+offset_right = -632.0
+offset_bottom = -192.0
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
+[connection signal="body_entered" from="Roof" to="CharacterBody2D" method="_on_roof_body_entered"]
+[connection signal="body_entered" from="Enemy" to="CharacterBody2D" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Enemy2" to="CharacterBody2D" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Spring" to="CharacterBody2D" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Spring2" to="CharacterBody2D" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Spring3" to="CharacterBody2D" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="TallShroom" to="CharacterBody2D" method="_on_tall_shroom_body_entered"]

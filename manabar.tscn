@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://rx5dl0y4mmfj"]
+
+[node name="HScrollBar" type="HScrollBar"]
+offset_left = -693.0
+offset_top = 311.0
+offset_right = -429.0
+offset_bottom = 383.0

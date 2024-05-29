@@ -1,8 +1,13 @@
 extends CharacterBody2D
 
+signal healthChanged
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+#health system
+@onready var heartsContainer = $"../UI/HeartsContainer"
+@export var max_health = 2
+@onready var current_health: float = max_health
 
 var shoot_right = false
 var shoot_left = false
@@ -11,21 +16,20 @@ var shoot_left = false
 @export var bullet_speed = 1000
 var flip = 1
 
+
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-@onready var object=preload("res://area_2d.tscn")
-
+@onready var object=preload("res://Bullet.tscn")
 
 	
 func _physics_process(delta):
-	print (mana)
 	# Add the gravity
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	#makes it so we can reference mana from either the outside or the inside if mana_inside == false:
-	$Camera2D/HScrollBar.value = mana
-	
+	$"../UI/ManaBar".value = mana
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -45,13 +49,12 @@ func _physics_process(delta):
 		flip = -1
 	
 	
-	var instance = object.instantiate()
+	
 	
 	if mana < 100:
 		mana += regen_rate*delta
 
-		
-	
+	var instance = object.instantiate()
 	
 	if Input.is_action_just_pressed("shoot"):
 		if mana >= 10:
@@ -78,18 +81,39 @@ func _physics_process(delta):
 
 
 
-
 func _on_enemy_body_entered(body):
-	print ("dead")
-	get_tree().reload_current_scene()
-	
-
+	if (body.name == "Player"):
+		current_health -= 1
+		healthChanged.emit(current_health)
+		print("hurt")
+		velocity.y = -20
+		if current_health <= 0:
+			get_tree().reload_current_scene()
+		
 func _on_spring_body_entered(body):
-	velocity.y = -1000
-	print ("boing")
-
-
+	if (body.name == "Player"):
+		velocity.y = -1000
+	#print ("boing")
 
 func _on_tall_shroom_body_entered(body):
 	velocity.y = -1000
-	print ("boing")
+	#print ("boing")
+	
+	
+func _on_roof_body_entered(body):
+	velocity.y = -1000
+	#print ("boing")
+	
+
+
+func _on_lava_area_body_entered(body):
+	if (body.name == "Player"):
+		current_health -= 1
+		healthChanged.emit(current_health)
+		print("hurt")
+		position.y = -11
+		position.x = -123
+		if current_health <= 0:
+			get_tree().reload_current_scene()
+
+

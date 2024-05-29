@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://1ejm0iih4y48"]
+
+[ext_resource type="PackedScene" uid="uid://chpyp6r3mwv7l" path="res://hearts_container.tscn" id="1_4dxfv"]
+[ext_resource type="PackedScene" uid="uid://rx5dl0y4mmfj" path="res://manabar.tscn" id="2_o258g"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="HeartsContainer" parent="." instance=ExtResource("1_4dxfv")]
+
+[node name="ManaBar" parent="." instance=ExtResource("2_o258g")]
+offset_left = 32.0
+offset_top = 545.0
+offset_right = 296.0
+offset_bottom = 617.0
