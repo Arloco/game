@@ -1,0 +1,121 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5jdlc28std2u"]
+
+[ext_resource type="Texture2D" uid="uid://biys8ct7ki1e3" path="res://FairyAppleTitleScreen.jpg" id="1_etwvq"]
+[ext_resource type="Script" path="res://Main_Menu/main_menu.gd" id="1_k7umi"]
+[ext_resource type="Texture2D" uid="uid://dowo4hr3aipf1" path="res://PlayButton.jpg" id="2_3lgwp"]
+[ext_resource type="Texture2D" uid="uid://bag2ee664wlnt" path="res://HowToPlayButton.jpg" id="3_hh2kk"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ecip1"]
+
+[sub_resource type="SystemFont" id="SystemFont_mfs3t"]
+font_names = PackedStringArray("Bell MT")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2pdkg"]
+
+[sub_resource type="SystemFont" id="SystemFont_hutwx"]
+font_names = PackedStringArray("Bell MT")
+
+[node name="Main_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_k7umi")
+
+[node name="EnchantedOrchard" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 254.0
+offset_right = 1366.0
+offset_bottom = 608.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_etwvq")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="WhiteBackground" type="TextureRect" parent="EnchantedOrchard"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -383.0
+offset_right = 1391.0
+offset_bottom = 1022.0
+texture = SubResource("CanvasTexture_ecip1")
+expand_mode = 1
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 530.0
+offset_top = 390.0
+offset_right = 722.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"FlatButton"
+icon = ExtResource("2_3lgwp")
+expand_icon = true
+
+[node name="HowToPlay" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 387.0
+offset_top = 511.0
+offset_right = 844.0
+offset_bottom = 570.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"FlatButton"
+icon = ExtResource("3_hh2kk")
+expand_icon = true
+
+[node name="Text" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -31.0
+offset_top = 16.0
+offset_right = 1271.0
+offset_bottom = 637.0
+theme_override_colors/font_color = Color(1, 0.483362, 0.704631, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = SubResource("SystemFont_mfs3t")
+theme_override_font_sizes/font_size = 90
+text = "How to play:
+WASD to run and jump
+Space to enter the house
+Click to shoot
+Collect all of the fairy apples to 
+banish the corruption"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextBackground" type="TextureRect" parent="Text"]
+visible = false
+show_behind_parent = true
+layout_mode = 0
+offset_left = -10.0
+offset_top = -26.0
+offset_right = 1288.0
+offset_bottom = 752.0
+texture = SubResource("CanvasTexture_2pdkg")
+
+[node name="CloseText" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 966.0
+offset_top = 40.0
+offset_right = 1085.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(1, 0.482353, 0.705882, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = SubResource("SystemFont_hutwx")
+theme_override_font_sizes/font_size = 40
+text = "Close"

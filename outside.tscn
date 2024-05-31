@@ -14,22 +14,19 @@
 [ext_resource type="Texture2D" uid="uid://lo326cfecubi" path="res://lilshroom.png" id="13_0ys0b"]
 [ext_resource type="Texture2D" uid="uid://dqq7onvbe1013" path="res://FairyAppleTree.png" id="14_51inw"]
 [ext_resource type="PackedScene" uid="uid://bk23dpsu7drho" path="res://fairy_apple.tscn" id="14_fuibi"]
+[ext_resource type="PackedScene" uid="uid://dcer7mwavubm5" path="res://HousePlatform.tscn" id="15_du8hi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buh25"]
 size = Vector2(193.75, 255)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lxxdi"]
-radius = 59.0
-height = 392.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cy70h"]
-size = Vector2(8913, 136)
+size = Vector2(15708, 136)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_lg33o")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(254, -101)
+position = Vector2(167, -1109)
 polygon = PackedVector2Array(6340, -7262, 16325, 5830, -5262, 6584, -7848, -6023)
 
 [node name="House" type="Area2D" parent="."]
@@ -53,25 +50,26 @@ texture = ExtResource("3_1pnwu")
 position = Vector2(-79, -330)
 rotation = 1.5708
 
-[node name="RoofCollision" type="CollisionShape2D" parent="House/Roof"]
-shape = SubResource("CapsuleShape2D_lxxdi")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="House/Roof"]
+polygon = PackedVector2Array(22.0001, 18.9999, 61.0009, 233, -29.9993, 183, -74.9995, 124, -102, 56.0004, -102, -35.9996, -75.0004, -118, -36.0006, -177, 5.99921, -223, 50.9991, -241, 80.9991, -261, 62.9995, -129)
 
 [node name="Lava" parent="." instance=ExtResource("9_6fot8")]
-z_index = 4096
+z_index = 5
 position = Vector2(664, 110)
 
 [node name="LavaArea" type="Area2D" parent="Lava"]
 
 [node name="LavaCollider" type="CollisionShape2D" parent="Lava/LavaArea"]
-position = Vector2(4270.5, 120)
+position = Vector2(1831, 120)
 shape = SubResource("RectangleShape2D_cy70h")
 
 [node name="Platform" parent="." instance=ExtResource("2_a5exq")]
+position = Vector2(6, 0)
 
 [node name="Obstacles" type="Node" parent="."]
 
 [node name="Enemy" parent="Obstacles" instance=ExtResource("6_i643u")]
-z_index = 1
+z_index = 2
 position = Vector2(-1554, -248)
 
 [node name="Enemy4" parent="Obstacles" instance=ExtResource("6_i643u")]
@@ -81,6 +79,62 @@ position = Vector2(-1053, -874)
 [node name="Enemy3" parent="Obstacles" instance=ExtResource("6_i643u")]
 z_index = 1
 position = Vector2(1826, -820)
+
+[node name="Enemy39" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(-681, -999)
+
+[node name="Enemy40" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(-207, -1931)
+
+[node name="Enemy41" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(473, -1974)
+
+[node name="Enemy42" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(1307, -2206)
+
+[node name="Enemy43" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(410, -2685)
+
+[node name="Enemy44" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(-384, -3529)
+
+[node name="Enemy45" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(-945, -3641)
+
+[node name="Enemy46" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(-346, -3386)
+
+[node name="Enemy47" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(-124, -3522)
+
+[node name="Enemy48" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(37, -3391)
+
+[node name="Enemy49" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(-1181, -3389)
+
+[node name="Enemy50" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(-658, -3341)
+
+[node name="Enemy51" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(-658, -3593)
+
+[node name="Enemy52" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(-1252, -3689)
 
 [node name="Enemy5" parent="Obstacles" instance=ExtResource("6_i643u")]
 z_index = 1
@@ -124,7 +178,7 @@ position = Vector2(6481, -2692)
 
 [node name="Enemy27" parent="Obstacles" instance=ExtResource("6_i643u")]
 z_index = 1
-position = Vector2(6727, -360)
+position = Vector2(6560, -375)
 
 [node name="Enemy19" parent="Obstacles" instance=ExtResource("6_i643u")]
 z_index = 1
@@ -137,6 +191,50 @@ position = Vector2(6922, -2872)
 [node name="Enemy21" parent="Obstacles" instance=ExtResource("6_i643u")]
 z_index = 1
 position = Vector2(6655, -2560)
+
+[node name="Enemy28" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(7568, -900)
+
+[node name="Enemy29" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(7792, -926)
+
+[node name="Enemy30" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(8793, -981)
+
+[node name="Enemy31" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(9083, -929)
+
+[node name="Enemy32" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(9024, -1062)
+
+[node name="Enemy33" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(8770, -1169)
+
+[node name="Enemy34" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(7597, -1281)
+
+[node name="Enemy35" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(7473, -1084)
+
+[node name="Enemy36" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(7742, -1124)
+
+[node name="Enemy37" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(9333, -1031)
+
+[node name="Enemy38" parent="Obstacles" instance=ExtResource("6_i643u")]
+z_index = 1
+position = Vector2(8551, -1093)
 
 [node name="Enemy22" parent="Obstacles" instance=ExtResource("6_i643u")]
 z_index = 1
@@ -179,7 +277,7 @@ z_index = 1
 position = Vector2(819, -341)
 
 [node name="Spring" parent="Obstacles" instance=ExtResource("7_akf3n")]
-position = Vector2(-836, 152)
+position = Vector2(-1511, 5)
 
 [node name="Spring5" parent="Obstacles" instance=ExtResource("7_akf3n")]
 position = Vector2(2113, -424)
@@ -202,21 +300,121 @@ position = Vector2(6557, -233)
 [node name="Spring11" parent="Obstacles" instance=ExtResource("7_akf3n")]
 position = Vector2(6782, -232)
 
-[node name="Spring4" parent="Obstacles" instance=ExtResource("7_akf3n")]
-position = Vector2(497, -807)
+[node name="Spring12" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(7549, -455)
+
+[node name="Spring13" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(7549, -455)
+
+[node name="Spring15" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(8807, -455)
+
+[node name="Spring14" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(8173, -454)
+
+[node name="Spring16" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(8031, -1449)
+
+[node name="Spring17" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(8461, -1879)
+
+[node name="Spring18" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(8017, -2232)
+
+[node name="Spring19" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(8449, -2647)
+
+[node name="Spring20" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(7954, -2870)
+
+[node name="Spring21" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(7300, -3048)
+
+[node name="Spring22" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(6832, -3383)
+
+[node name="Spring23" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(6391, -3689)
+
+[node name="Spring24" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(5775, -3496)
+
+[node name="Spring25" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(5215, -2857)
+
+[node name="Spring26" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(4649, -2857)
+
+[node name="Spring27" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(4143, -2853)
+
+[node name="Spring28" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(3607, -2853)
+
+[node name="Spring29" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(3143, -2838)
+
+[node name="Spring30" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(2576, -2838)
+
+[node name="Spring31" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(2023, -2534)
+
+[node name="Spring32" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(2023, -2534)
 
 [node name="Spring2" parent="Obstacles" instance=ExtResource("7_akf3n")]
+z_index = 11
 position = Vector2(628, 41)
+
+[node name="Spring4" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(-1351, -618)
+
+[node name="Spring33" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(-290, -1400)
+
+[node name="Spring34" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(206, -1766)
+
+[node name="Spring35" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(-408, -2520)
+
+[node name="Spring37" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(-947, -2966)
+
+[node name="Spring36" parent="Obstacles" instance=ExtResource("7_akf3n")]
+position = Vector2(43, -2969)
 
 [node name="Spring3" parent="Obstacles" instance=ExtResource("7_akf3n")]
 position = Vector2(1228, -73)
 
 [node name="TallShroom" parent="Obstacles" instance=ExtResource("8_gp6bx")]
-position = Vector2(-410, -250)
+z_index = 7
+position = Vector2(-406, -247)
+rotation = -0.0872665
+
+[node name="TallShroom5" parent="Obstacles" instance=ExtResource("8_gp6bx")]
+position = Vector2(-863, -898)
+rotation = -0.0872665
+
+[node name="TallShroom6" parent="Obstacles" instance=ExtResource("8_gp6bx")]
+position = Vector2(663, -2048)
+rotation = -0.0872665
+
+[node name="TallShroom7" parent="Obstacles" instance=ExtResource("8_gp6bx")]
+position = Vector2(283, -2054)
+rotation = -0.0872665
+
+[node name="TallShroom8" parent="Obstacles" instance=ExtResource("8_gp6bx")]
+position = Vector2(-1466, -3251)
 rotation = -0.0872665
 
 [node name="TallShroom2" parent="Obstacles" instance=ExtResource("8_gp6bx")]
 position = Vector2(4311, -291)
+rotation = -0.0872665
+
+[node name="TallShroom4" parent="Obstacles" instance=ExtResource("8_gp6bx")]
+position = Vector2(8278, -740)
 rotation = -0.0872665
 
 [node name="TallShroom3" parent="Obstacles" instance=ExtResource("8_gp6bx")]
@@ -225,8 +423,7 @@ rotation = -0.0872665
 
 [node name="Player" parent="." instance=ExtResource("3_qpdha")]
 z_index = 100
-position = Vector2(-97, -73)
-max_health = 3
+position = Vector2(-77, -22)
 
 [node name="UI" parent="." instance=ExtResource("11_ghu2e")]
 
@@ -238,19 +435,31 @@ scale = Vector2(0.141954, 0.141954)
 texture = ExtResource("13_0ys0b")
 
 [node name="FairyApple" parent="." instance=ExtResource("14_fuibi")]
-position = Vector2(-1115, 83)
+position = Vector2(8223, -1229)
 
 [node name="FairyApple3" parent="." instance=ExtResource("14_fuibi")]
-position = Vector2(1640, -464)
+z_index = 2
+position = Vector2(402, -152)
 
 [node name="FairyApple2" parent="." instance=ExtResource("14_fuibi")]
-position = Vector2(-516, -805)
+position = Vector2(372, -3504)
 
 [node name="FairyAppleTree" type="Sprite2D" parent="."]
-position = Vector2(312, -102)
+z_index = 10
+position = Vector2(389, -100)
 rotation = -0.0523599
 scale = Vector2(0.215, 0.215)
 texture = ExtResource("14_51inw")
+
+[node name="FairyAppleTree2" type="Sprite2D" parent="."]
+position = Vector2(1033, -1169)
+rotation = -0.0523599
+scale = Vector2(0.215, 0.215)
+texture = ExtResource("14_51inw")
+
+[node name="HousePlatform" parent="." instance=ExtResource("15_du8hi")]
+z_index = 6
+position = Vector2(24, -1)
 
 [connection signal="body_entered" from="House" to="House" method="_on_body_entered"]
 [connection signal="body_exited" from="House" to="House" method="_on_body_exited"]
@@ -259,6 +468,20 @@ texture = ExtResource("14_51inw")
 [connection signal="body_entered" from="Obstacles/Enemy" to="Player" method="_on_enemy_body_entered"]
 [connection signal="body_entered" from="Obstacles/Enemy4" to="Player" method="_on_enemy_body_entered"]
 [connection signal="body_entered" from="Obstacles/Enemy3" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy39" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy40" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy41" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy42" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy43" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy44" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy45" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy46" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy47" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy48" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy49" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy50" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy51" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy52" to="Player" method="_on_enemy_body_entered"]
 [connection signal="body_entered" from="Obstacles/Enemy5" to="Player" method="_on_enemy_body_entered"]
 [connection signal="body_entered" from="Obstacles/Enemy9" to="Player" method="_on_enemy_body_entered"]
 [connection signal="body_entered" from="Obstacles/Enemy10" to="Player" method="_on_enemy_body_entered"]
@@ -273,6 +496,17 @@ texture = ExtResource("14_51inw")
 [connection signal="body_entered" from="Obstacles/Enemy19" to="Player" method="_on_enemy_body_entered"]
 [connection signal="body_entered" from="Obstacles/Enemy20" to="Player" method="_on_enemy_body_entered"]
 [connection signal="body_entered" from="Obstacles/Enemy21" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy28" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy29" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy30" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy31" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy32" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy33" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy34" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy35" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy36" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy37" to="Player" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Obstacles/Enemy38" to="Player" method="_on_enemy_body_entered"]
 [connection signal="body_entered" from="Obstacles/Enemy22" to="Player" method="_on_enemy_body_entered"]
 [connection signal="body_entered" from="Obstacles/Enemy23" to="Player" method="_on_enemy_body_entered"]
 [connection signal="body_entered" from="Obstacles/Enemy24" to="Player" method="_on_enemy_body_entered"]
@@ -291,11 +525,42 @@ texture = ExtResource("14_51inw")
 [connection signal="body_entered" from="Obstacles/Spring9" to="Player" method="_on_spring_body_entered"]
 [connection signal="body_entered" from="Obstacles/Spring10" to="Player" method="_on_spring_body_entered"]
 [connection signal="body_entered" from="Obstacles/Spring11" to="Player" method="_on_spring_body_entered"]
-[connection signal="body_entered" from="Obstacles/Spring4" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring12" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring13" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring15" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring14" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring16" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring17" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring18" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring19" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring20" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring21" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring22" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring23" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring24" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring25" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring26" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring27" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring28" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring29" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring30" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring31" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring32" to="Player" method="_on_spring_body_entered"]
 [connection signal="body_entered" from="Obstacles/Spring2" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring4" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring33" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring34" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring35" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring37" to="Player" method="_on_spring_body_entered"]
+[connection signal="body_entered" from="Obstacles/Spring36" to="Player" method="_on_spring_body_entered"]
 [connection signal="body_entered" from="Obstacles/Spring3" to="Player" method="_on_spring_body_entered"]
 [connection signal="body_entered" from="Obstacles/TallShroom" to="Player" method="_on_tall_shroom_body_entered"]
+[connection signal="body_entered" from="Obstacles/TallShroom5" to="Player" method="_on_tall_shroom_body_entered"]
+[connection signal="body_entered" from="Obstacles/TallShroom6" to="Player" method="_on_tall_shroom_body_entered"]
+[connection signal="body_entered" from="Obstacles/TallShroom7" to="Player" method="_on_tall_shroom_body_entered"]
+[connection signal="body_entered" from="Obstacles/TallShroom8" to="Player" method="_on_tall_shroom_body_entered"]
 [connection signal="body_entered" from="Obstacles/TallShroom2" to="Player" method="_on_tall_shroom_body_entered"]
+[connection signal="body_entered" from="Obstacles/TallShroom4" to="Player" method="_on_tall_shroom_body_entered"]
 [connection signal="body_entered" from="Obstacles/TallShroom3" to="Player" method="_on_tall_shroom_body_entered"]
 [connection signal="body_entered" from="FairyApple" to="Player" method="_on_fairy_apple_body_entered"]
 [connection signal="body_entered" from="FairyApple3" to="Player" method="_on_fairy_apple_body_entered"]

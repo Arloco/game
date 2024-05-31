@@ -20,8 +20,8 @@ func updateHearts(current_health: int):
 	var hearts = get_children()
 	
 	
-	for i in range (current_health):
+	for i in range (Singleton.current_health):
 		hearts[i].update(true)
 	
-	for i in range (current_health, hearts.size()):
+	for i in range (Singleton.current_health, hearts.size()):
 		hearts[i].update(false)

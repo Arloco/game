@@ -16,9 +16,9 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if (body.name == "Player"):
-		player.max_health += 1
-	player.current_health = player.max_health
+		Singleton.max_health += 1
+	Singleton.current_health = Singleton.max_health
 	heartsContainer.setMaxHearts(1)
-	fairyAppleHealthChanged.emit(player.current_health)
-	print (player.max_health)
+	fairyAppleHealthChanged.emit(Singleton.current_health)
+	print (Singleton.max_health)
 	queue_free()

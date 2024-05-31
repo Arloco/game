@@ -3,11 +3,11 @@ extends CharacterBody2D
 signal healthChanged
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -600.0
 #health system
 @onready var heartsContainer = $"../UI/HeartsContainer"
-@export var max_health = 2
-@onready var current_health: float = max_health
+#@export var max_health = 2
+#@onready var current_health: float = Singleton.max_health
 
 var shoot_right = false
 var shoot_left = false
@@ -25,6 +25,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 	
 func _physics_process(delta):
+	#print (Singleton.current_health)
 	# Add the gravity
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -78,42 +79,47 @@ func _physics_process(delta):
 		instance.rotation = 820
 		shoot_left = false
 		mana -= 10
-
+		
+	if Singleton.current_health <= 0:
+			Singleton.max_health = 2
+			Singleton.current_health = Singleton.max_health
+			healthChanged.emit(Singleton.current_health)
+			get_tree().reload_current_scene()
 
 
 func _on_enemy_body_entered(body):
 	if (body.name == "Player"):
-		current_health -= 1
-		healthChanged.emit(current_health)
+		Singleton.current_health -= 1
+		healthChanged.emit(Singleton.current_health)
 		print("hurt")
 		velocity.y = -20
-		if current_health <= 0:
-			get_tree().reload_current_scene()
+		
 		
 func _on_spring_body_entered(body):
+
 	if (body.name == "Player"):
-		velocity.y = -1000
+		velocity.y = -1225
 	#print ("boing")
 
 func _on_tall_shroom_body_entered(body):
-	velocity.y = -1000
+	velocity.y = -1225
 	#print ("boing")
 	
 	
 func _on_roof_body_entered(body):
-	velocity.y = -1000
+	velocity.y = -1225
 	#print ("boing")
 	
 
 
 func _on_lava_area_body_entered(body):
 	if (body.name == "Player"):
-		current_health -= 1
-		healthChanged.emit(current_health)
+		Singleton.current_health -= 1
+		healthChanged.emit(Singleton.current_health)
 		print("hurt")
 		position.y = -11
 		position.x = -123
-		if current_health <= 0:
+		if Singleton.current_health <= 0:
 			get_tree().reload_current_scene()
 
 
