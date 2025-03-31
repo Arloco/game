@@ -365,7 +365,7 @@ position = Vector2(2023, -2534)
 
 [node name="Spring2" parent="Obstacles" instance=ExtResource("7_akf3n")]
 z_index = 11
-position = Vector2(628, 41)
+position = Vector2(710, 2)
 
 [node name="Spring4" parent="Obstacles" instance=ExtResource("7_akf3n")]
 position = Vector2(-1351, -618)
