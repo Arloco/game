@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://dij0lek2hgkx8"]
+
+[ext_resource type="Texture2D" uid="uid://k8n5moyilbxa" path="res://Art/platform.jpg" id="1_2j3pc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oxx76"]
+texture = ExtResource("1_2j3pc")
+texture_region_size = Vector2i(117, 112)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-60, -56, -60, 56, 58, 56, 60, -56)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-60, -56, -60, 56, 60, 56, 60, -56)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-60, -56, -60, 56, 60, 56, 60, -56)
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-60, -56, -60, 56, 58, 56, 60, -56)
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-60, -56, -60, 56, 60, 56, 60, -56)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+4:1/0 = 0
+4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_mf6s5"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_oxx76")
+
+[node name="Inside Platform" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_mf6s5")
+format = 2
+layer_0/tile_data = PackedInt32Array(458762, 65536, 0, 458769, 131072, 0, 458776, 131072, 0, 458783, 196608, 0, 458790, 262144, 0, 458755, 131072, 0, 524284, 196608, 0, 524277, 65536, 0, 524270, 131072, 0, 524263, 196608, 0, 524256, 65536, 0, 524249, 131072, 0, 524242, 0, 0, 982994, 0, 1, 983001, 65536, 1, 983008, 65536, 1, 983015, 65536, 1, 983022, 65536, 1, 983029, 65536, 1, 983036, 65536, 1, 917507, 65536, 1, 917514, 65536, 1, 917521, 65536, 1, 917528, 65536, 1, 917535, 65536, 1, 917542, 262144, 1, 1376294, 262144, 1, 1376287, 196608, 1, 1376280, 196608, 1, 1376273, 196608, 1, 1376266, 196608, 1, 1376259, 196608, 1, 1441788, 196608, 1, 1441781, 196608, 1, 1441774, 196608, 1, 1441767, 196608, 1, 1441760, 196608, 1, 1441753, 196608, 1, 1441746, 0, 1)

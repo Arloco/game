@@ -1,6 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b5jdlc28std2u"]
 
 [ext_resource type="Texture2D" uid="uid://biys8ct7ki1e3" path="res://FairyAppleTitleScreen.jpg" id="1_etwvq"]
+[ext_resource type="Texture2D" uid="uid://biys8ct7ki1e3" path="res://Art/FairyAppleTitleScreen.jpg" id="1_etwvq"]
 [ext_resource type="Script" path="res://Main_Menu/main_menu.gd" id="1_k7umi"]
 [ext_resource type="Texture2D" uid="uid://dowo4hr3aipf1" path="res://PlayButton.jpg" id="2_3lgwp"]
 [ext_resource type="Texture2D" uid="uid://bag2ee664wlnt" path="res://HowToPlayButton.jpg" id="3_hh2kk"]

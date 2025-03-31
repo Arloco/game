@@ -4,7 +4,7 @@ extends Control
 
 @onready var play_button = $PlayButton as Button
 @onready var how_to_play = $HowToPlay as Button
-@onready var play = preload("res://outside.tscn") as PackedScene
+@onready var play = preload("res://Scenes/outside.tscn") as PackedScene
 @onready var text = $Text
 @onready var text_background = $Text/TextBackground
 @onready var close_text = $CloseText

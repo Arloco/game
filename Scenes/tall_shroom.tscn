@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://lvqajlspi1bg"]
+
+[ext_resource type="Texture2D" uid="uid://d0fcudvj4aidb" path="res://Art/BackgroundShroom.png" id="1_m5570"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mocyt"]
+radius = 42.5592
+height = 141.417
+
+[node name="TallShroom" type="Area2D"]
+position = Vector2(-10, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("1_m5570")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -249)
+rotation = 1.43641
+shape = SubResource("CapsuleShape2D_mocyt")
