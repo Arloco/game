@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b3pgejynlqeos" path="res://Scenes/shop_keeper.tscn" id="6_xjpbm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buh25"]
-size = Vector2(133, 200)
+size = Vector2(177, 266)
 
 [node name="Inside" type="Node2D"]
 
@@ -21,7 +21,7 @@ scale = Vector2(0.08, 0.08)
 texture = ExtResource("4_u4vde")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(8, 84)
+position = Vector2(0.5, 78)
 shape = SubResource("RectangleShape2D_buh25")
 
 [node name="Inside Platform" parent="." instance=ExtResource("2_n42q6")]

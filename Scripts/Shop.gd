@@ -12,6 +12,6 @@ func update_ui():
 	currency_label.text = "Money: $" + str(Singleton.money)
 	upgrade_cost_label.text = "Upgrade Cost: $" + str(player.get_upgrade_cost())
 
-func _on_buy_button_pressed():
+func _on_buy_button_pressed() -> void:
 	player.upgrade_weapon()
 	update_ui()
