@@ -1,10 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://b5jdlc28std2u"]
 
-[ext_resource type="Texture2D" uid="uid://biys8ct7ki1e3" path="res://FairyAppleTitleScreen.jpg" id="1_etwvq"]
 [ext_resource type="Texture2D" uid="uid://biys8ct7ki1e3" path="res://Art/FairyAppleTitleScreen.jpg" id="1_etwvq"]
 [ext_resource type="Script" path="res://Main_Menu/main_menu.gd" id="1_k7umi"]
-[ext_resource type="Texture2D" uid="uid://dowo4hr3aipf1" path="res://PlayButton.jpg" id="2_3lgwp"]
-[ext_resource type="Texture2D" uid="uid://bag2ee664wlnt" path="res://HowToPlayButton.jpg" id="3_hh2kk"]
+[ext_resource type="Texture2D" uid="uid://dowo4hr3aipf1" path="res://Art/PlayButton.jpg" id="2_3lgwp"]
+[ext_resource type="Texture2D" uid="uid://bag2ee664wlnt" path="res://Art/HowToPlayButton.jpg" id="3_hh2kk"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ecip1"]
 
@@ -19,8 +18,6 @@ font_names = PackedStringArray("Bell MT")
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 script = ExtResource("1_k7umi")
 
 [node name="EnchantedOrchard" type="TextureRect" parent="."]
