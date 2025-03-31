@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfkywnjfs4har"]
+
+[ext_resource type="Script" path="res://Scripts/Shop.gd" id="1_qkkf1"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -578.0
+offset_top = -321.0
+offset_right = -578.0
+offset_bottom = -321.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qkkf1")
+
+[node name="money" type="Label" parent="."]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 109.0
+offset_right = 407.0
+offset_bottom = 179.0
+
+[node name="Buy button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 314.0
+offset_right = 789.0
+offset_bottom = 387.0
+theme_override_font_sizes/font_size = 40
+text = "BUY UPGRADE"
+
+[node name="upgrade cost" type="Label" parent="."]
+layout_mode = 0
+offset_left = 427.0
+offset_top = 222.0
+offset_right = 715.0
+offset_bottom = 297.0
+theme_override_font_sizes/font_size = 40
+
+[connection signal="pressed" from="Buy button" to="." method="_on_buy_button_pressed"]

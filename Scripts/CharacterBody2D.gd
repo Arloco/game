@@ -22,7 +22,7 @@ var flip = 1
 var is_jumping = false
 var coyote_timer: float = 0.0
 var jump_buffer_timer: float = 0.0
-
+var weapon_level = 1
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -105,13 +105,26 @@ func _physics_process(delta):
 		instance.rotation = 820
 		shoot_left = false
 		mana -= 10
-		
+	
+	#die
 	if Singleton.current_health <= 0:
 			Singleton.max_health = 2
 			Singleton.current_health = Singleton.max_health
 			healthChanged.emit(Singleton.current_health)
+			Singleton.apples_already_eaten.clear()
 			get_tree().reload_current_scene()
+			
+func upgrade_weapon():
+	if Singleton.money >= get_upgrade_cost():
+		Singleton.money -= get_upgrade_cost()
+		weapon_level += 1
+		Singleton.bullet_damage += 5
+		print("Weapon upgraded! Level:", weapon_level, " | Damage:", Singleton.bullet_damage)
+	else:
+		print("Not enough money!")
 
+func get_upgrade_cost() -> int:
+	return weapon_level * 20
 
 func _on_enemy_body_entered(body):
 	if (body.name == "Player"):

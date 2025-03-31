@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3pgejynlqeos"]
+
+[ext_resource type="Script" path="res://Scripts/shop_keeper.gd" id="1_buj0v"]
+[ext_resource type="Texture2D" uid="uid://dxa5sws6jpxyh" path="res://Art/EnemyArt.png" id="1_f0nhw"]
+[ext_resource type="PackedScene" uid="uid://cfkywnjfs4har" path="res://Scenes/shop.tscn" id="2_2i34d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uk40t"]
+size = Vector2(117.5, 225.5)
+
+[node name="Shop Keeper" type="Node2D"]
+script = ExtResource("1_buj0v")
+
+[node name="EnemyArt" type="Sprite2D" parent="."]
+position = Vector2(8.56619, 0.64563)
+rotation = 1.5708
+scale = Vector2(0.216393, 0.166097)
+texture = ExtResource("1_f0nhw")
+
+[node name="Shop" parent="." instance=ExtResource("2_2i34d")]
+visible = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4.18962, 3.37317)
+shape = SubResource("RectangleShape2D_uk40t")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

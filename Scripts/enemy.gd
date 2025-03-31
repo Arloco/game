@@ -1,10 +1,7 @@
 extends Area2D
 
 var direction = 1
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
+@export var health = 10
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -18,5 +15,8 @@ func _on_timer_timeout():
 func _on_body_entered(body):
 	if (body.name == "Player"):
 		pass
-	else:
-		queue_free()
+	if body.is_in_group("Bullets"):
+		print("yaya")
+		health -= Singleton.bullet_damage
+		if health <= 0:
+			queue_free()

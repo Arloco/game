@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cada8qltwyg5x" path="res://Scenes/platform.tscn" id="2_a5exq"]
 [ext_resource type="Texture2D" uid="uid://c5chflwhldaut" path="res://Art/finalShroomHouse.png" id="2_cxq14"]
 [ext_resource type="Texture2D" uid="uid://bu6dbgmhjoen6" path="res://Art/DoorFinished.jpg" id="3_1pnwu"]
-[ext_resource type="PackedScene" uid="uid://bxjid3dng6x0i" path="res://Scenes/character_body_2d.tscn" id="3_qpdha"]
+[ext_resource type="PackedScene" uid="uid://bxjid3dng6x0i" path="res://Scenes/Player.tscn" id="3_qpdha"]
 [ext_resource type="PackedScene" uid="uid://pd078ybsmqxo" path="res://Scenes/enemy.tscn" id="6_i643u"]
 [ext_resource type="PackedScene" uid="uid://b5sretkyka12r" path="res://Scenes/spring.tscn" id="7_akf3n"]
 [ext_resource type="PackedScene" uid="uid://lvqajlspi1bg" path="res://Scenes/tall_shroom.tscn" id="8_gp6bx"]
@@ -37,14 +37,14 @@ position = Vector2(-65, -318)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_cxq14")
 
-[node name="DoorCollision" type="CollisionShape2D" parent="House"]
-position = Vector2(-25, -58)
-shape = SubResource("RectangleShape2D_buh25")
-
 [node name="DoorFinished" type="Sprite2D" parent="House"]
 position = Vector2(-21, -65)
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("3_1pnwu")
+
+[node name="DoorCollision" type="CollisionShape2D" parent="House"]
+position = Vector2(-25, -58)
+shape = SubResource("RectangleShape2D_buh25")
 
 [node name="Roof" type="Area2D" parent="House"]
 position = Vector2(-79, -330)
@@ -434,18 +434,20 @@ rotation = 0.0523599
 scale = Vector2(0.141954, 0.141954)
 texture = ExtResource("13_0ys0b")
 
-[node name="FairyApple" parent="." instance=ExtResource("14_fuibi")]
+[node name="FairyApple1" parent="." instance=ExtResource("14_fuibi")]
 position = Vector2(8223, -1229)
-
-[node name="FairyApple3" parent="." instance=ExtResource("14_fuibi")]
-z_index = 2
-position = Vector2(402, -152)
+apple_number = 1
 
 [node name="FairyApple2" parent="." instance=ExtResource("14_fuibi")]
 position = Vector2(372, -3504)
+apple_number = 2
+
+[node name="FairyApple3" parent="." instance=ExtResource("14_fuibi")]
+position = Vector2(402, -152)
+apple_number = 3
 
 [node name="FairyAppleTree" type="Sprite2D" parent="."]
-z_index = 10
+z_index = 8
 position = Vector2(389, -100)
 rotation = -0.0523599
 scale = Vector2(0.215, 0.215)
@@ -562,5 +564,5 @@ position = Vector2(24, -1)
 [connection signal="body_entered" from="Obstacles/TallShroom2" to="Player" method="_on_tall_shroom_body_entered"]
 [connection signal="body_entered" from="Obstacles/TallShroom4" to="Player" method="_on_tall_shroom_body_entered"]
 [connection signal="body_entered" from="Obstacles/TallShroom3" to="Player" method="_on_tall_shroom_body_entered"]
-[connection signal="body_entered" from="FairyApple" to="Player" method="_on_fairy_apple_body_entered"]
+[connection signal="body_entered" from="FairyApple1" to="Player" method="_on_fairy_apple_body_entered"]
 [connection signal="body_entered" from="FairyApple3" to="Player" method="_on_fairy_apple_body_entered"]
