@@ -2,11 +2,11 @@ extends CharacterBody2D
 
 signal healthChanged
 
-@export var SPEED = 300.0
+@export var SPEED = 500.0
 
 #Jump Vars
-@export var JUMP_VELOCITY = -1000.0 #Jump Speed
-@export var jump_cutoff: float = 0.3  # Controls how much speed is cut off when releasing jump
+@export var JUMP_VELOCITY = -1500.0 #Jump Speed
+@export var jump_cutoff: float = 0.1  # Controls how much speed is cut off when releasing jump
 @export var coyote_time: float = 0.15  # Time (seconds) player can still jump after leaving ground
 @export var jump_buffer_time: float = 0.1  # Time (seconds) the jump input can be buffered
 
@@ -17,6 +17,8 @@ signal healthChanged
 #health system
 @onready var heartsContainer = $"../UI/HeartsContainer"
 
+@onready var animator = $"AnimationPlayer"
+
 #Mana System Vars
 @export var mana = 100
 @export var regen_rate = 4
@@ -25,76 +27,97 @@ signal healthChanged
 var shoot_right = false
 var shoot_left = false
 var flip = 1
+var dead = false
 
-var is_jumping = false
+var acc = 20
+
+var is_falling
 var coyote_timer: float = 0.0
 var jump_buffer_timer: float = 0.0
 
-@export var boingy_thing_bounce_speed = -1625
+@export var boingy_thing_bounce_speed = -1825
 
-@export var gravity = 2000 #gravity
+@export var gravity = 3000 #gravity
 
 @onready var object=preload("res://Scenes/Bullet.tscn")
 
 func _physics_process(delta):
-	
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis("ui_left", "ui_right")
 	
 	Movement_and_grav(direction, delta)
 	
-	Mana_And_Weapon(direction, delta)
+	if dead == false:
+		Mana_And_Weapon(direction, delta)
 	
-	Check_if_dead()
+		Check_if_dead()
 	
 func Movement_and_grav(direction, delta):
 	#GRAVITY#
 	if not is_on_floor():
 		if velocity.y > 0:  # Falling down
+			is_falling = true
 			velocity.y += gravity * 1.4 * delta  # Increase fall gravity
 		else:  # Going up
 			velocity.y += gravity * delta  # Reduce gravity slightly
 		coyote_timer -= delta  # Reduce coyote time when in air
 	else:
 		coyote_timer = coyote_time  # Reset coyote timer when touching ground
-	
-	#JUMP#
-	# Buffer jump input
-	if Input.is_action_just_pressed("jump"):
-		jump_buffer_timer = jump_buffer_time  # Store jump input
 
-	if jump_buffer_timer > 0:
-		jump_buffer_timer -= delta  # Reduce buffer time
+	if dead == false:
+		#JUMP#
+		# Buffer jump input
+		if Input.is_action_just_pressed("jump"):
+			jump_buffer_timer = jump_buffer_time  # Store jump input
 
-		# Jump if we have coyote time left
-		if coyote_timer > 0:
-			velocity.y = JUMP_VELOCITY
-			is_jumping = true
-			coyote_timer = 0  # Disable coyote time after jumping
-			jump_buffer_timer = 0  # Reset jump buffer
+		if jump_buffer_timer > 0:
+			jump_buffer_timer -= delta  # Reduce buffer time
+			# Jump if we have coyote time left
+			if coyote_timer > 0:
+				#animator.play("Jump")
+				velocity.y = JUMP_VELOCITY
+				coyote_timer = 0  # Disable coyote time after jumping
+				jump_buffer_timer = 0  # Reset jump buffer
 
-	# Jump cutoff when the button is released early
-	if Input.is_action_just_released("jump") and velocity.y < 0:
-		velocity.y *= jump_cutoff
-
-	#MOVEMENT#
-	if direction:
-		velocity.x = direction * SPEED
-
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		# Jump cutoff when the button is released early
+		if Input.is_action_just_released("jump") and velocity.y < 0:
+			velocity.y *= jump_cutoff
+			
 		
+		if is_falling == true:
+			if is_on_floor():
+				animator.play("land on ground")
+				is_falling = false
+			
+		#MOVEMENT#
+		if Input.is_action_pressed("ui_right"):
+			if velocity.x < 0:
+				velocity.x = lerp(velocity.x, 0.0, 1)
+			velocity.x = min(velocity.x + acc, SPEED)
+		elif Input.is_action_pressed("ui_left"):
+			if velocity.x > 0:
+				velocity.x = lerp(velocity.x, 0.0, 1)
+			velocity.x = max(velocity.x - acc, -SPEED)
+		elif not is_on_floor():
+			velocity.x = lerp(velocity.x, 0.0, 0.1)
+		else:
+			velocity.x = lerp(velocity.x, 0.0, 0.7)
+	 
 	move_and_slide()
 
 func Check_if_dead():
 	if Singleton.current_health <= 0:
-		#die
-		Singleton.max_health = 2
-		Singleton.current_health = Singleton.max_health
-		healthChanged.emit(Singleton.current_health)
-		Singleton.apples_already_eaten.clear()
-		get_tree().reload_current_scene()
-			
+		dead = true
+		animator.play("Death")
+
+func die():
+	Singleton.max_health = 2
+	Singleton.current_health = Singleton.max_health
+	healthChanged.emit(Singleton.current_health)
+	Singleton.apples_already_eaten.clear()
+
+	get_tree().reload_current_scene()
+
 func Mana_And_Weapon(direction, delta):
 	#makes it so we can reference mana from either the outside or the inside if mana_inside == false:
 	$"../UI/ManaBar".value = mana
@@ -161,7 +184,13 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		Singleton.current_health -= 1
 		healthChanged.emit(Singleton.current_health)
 		print("hurt")
-		position.y = -11
-		position.x = -123
+		if Singleton.current_health > 0:
+			position.y = -11
+			position.x = -123
+		else:
+			Check_if_dead()
 		
-	
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Death":
+		die()

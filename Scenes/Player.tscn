@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxjid3dng6x0i"]
+[gd_scene load_steps=12 format=3 uid="uid://bxjid3dng6x0i"]
 
 [ext_resource type="Script" path="res://Scripts/CharacterBody2D.gd" id="1_0o8e2"]
 [ext_resource type="Texture2D" uid="uid://x2xli3n4d42l" path="res://Art/Test.png" id="2_g8q3e"]
@@ -11,6 +11,152 @@ height = 152.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3njfx"]
 radius = 63.0
 height = 152.0
+
+[sub_resource type="Animation" id="Animation_06107"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Belinda:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.166667, 0.366667, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 6.28319, 12.5664, 15.708]
+}
+
+[sub_resource type="Animation" id="Animation_6dllk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Belinda:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Belinda:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0.965116)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Belinda:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, -16)]
+}
+
+[sub_resource type="Animation" id="Animation_qvi0r"]
+resource_name = "Jump"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Belinda:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0.965116), Vector2(1.39259, 0.744186), Vector2(0.888889, 1.18023), Vector2(1, 0.965116)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Belinda:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(48, -16), Vector2(50, 2.99999), Vector2(49, -34.5), Vector2(48, -16)]
+}
+
+[sub_resource type="Animation" id="Animation_dghyn"]
+resource_name = "land on ground"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Belinda:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0.965116), Vector2(1.214, 0.8), Vector2(1, 0.965116)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Belinda:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(48, -16), Vector2(46, -1.00001), Vector2(48, -16)]
+}
+
+[sub_resource type="Animation" id="Animation_lpntw"]
+resource_name = "falling"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Belinda:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0.965116)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Belinda:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, -16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nsq3n"]
+_data = {
+"Death": SubResource("Animation_06107"),
+"Jump": SubResource("Animation_qvi0r"),
+"RESET": SubResource("Animation_6dllk"),
+"falling": SubResource("Animation_lpntw"),
+"land on ground": SubResource("Animation_dghyn")
+}
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_0o8e2")
@@ -45,4 +191,10 @@ script = ExtResource("3_5un7k")
 position = Vector2(48, -13)
 shape = SubResource("CapsuleShape2D_3njfx")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nsq3n")
+}
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
