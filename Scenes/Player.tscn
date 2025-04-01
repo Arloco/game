@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxjid3dng6x0i"]
+[gd_scene load_steps=6 format=3 uid="uid://bxjid3dng6x0i"]
 
 [ext_resource type="Script" path="res://Scripts/CharacterBody2D.gd" id="1_0o8e2"]
 [ext_resource type="Texture2D" uid="uid://x2xli3n4d42l" path="res://Art/Test.png" id="2_g8q3e"]
+[ext_resource type="Script" path="res://Scripts/camera.gd" id="3_5un7k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l7v5d"]
 radius = 62.0
-height = 150.0
+height = 152.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3njfx"]
+radius = 63.0
+height = 152.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_0o8e2")
@@ -16,7 +21,7 @@ position = Vector2(49, -13)
 shape = SubResource("CapsuleShape2D_l7v5d")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(72, 80)
+position = Vector2(52, 81)
 
 [node name="Belinda" type="Sprite2D" parent="."]
 position = Vector2(48, -16)
@@ -28,3 +33,16 @@ position = Vector2(52, 85)
 zoom = Vector2(0.8, 0.8)
 process_callback = 0
 position_smoothing_enabled = true
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+script = ExtResource("3_5un7k")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(48, -13)
+shape = SubResource("CapsuleShape2D_3njfx")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

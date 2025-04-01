@@ -6,7 +6,7 @@
 radius = 42.5592
 height = 141.417
 
-[node name="TallShroom" type="Area2D"]
+[node name="TallShroom" type="Area2D" groups=["boingy things"]]
 position = Vector2(-10, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

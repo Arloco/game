@@ -5,12 +5,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_lp51g"]
 radius = 21.0238
 
-[node name="Spring" type="Area2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_lp51g")
+[node name="Spring" type="Area2D" groups=["boingy things"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3, -13)
 scale = Vector2(0.083, 0.08)
 texture = ExtResource("1_f0e7a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lp51g")

@@ -5,3 +5,4 @@ var max_health = 2
 var apples_already_eaten = []
 var bullet_damage = 10
 var money = 10000
+var weapon_level = 1

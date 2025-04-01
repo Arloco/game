@@ -1,7 +1,10 @@
 extends Area2D
 
 var direction = 1
-@export var health = 100
+@export var health = 10
+
+func _ready() -> void:
+	add_to_group("enemies")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -13,8 +16,6 @@ func _on_timer_timeout():
 
 
 func _on_body_entered(body):
-	if (body.name == "Player"):
-		pass
 	if body.is_in_group("Bullets"):
 		print("yaya")
 		health -= Singleton.bullet_damage
