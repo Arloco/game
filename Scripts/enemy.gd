@@ -1,7 +1,7 @@
 extends Area2D
 
 var direction = 1
-@export var health = 10
+@export var health = 100
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -18,5 +18,6 @@ func _on_body_entered(body):
 	if body.is_in_group("Bullets"):
 		print("yaya")
 		health -= Singleton.bullet_damage
+		body.queue_free()
 		if health <= 0:
 			queue_free()
