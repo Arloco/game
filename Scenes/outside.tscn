@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bxa7hrhxk3k01"]
+[gd_scene load_steps=17 format=3 uid="uid://bxa7hrhxk3k01"]
 
 [ext_resource type="Script" path="res://Scripts/Area2D.gd" id="1_cngqk"]
 [ext_resource type="Script" path="res://Scripts/outside.gd" id="1_lg33o"]
@@ -18,9 +18,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buh25"]
 size = Vector2(193.75, 255)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cy70h"]
-size = Vector2(15708, 136)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_lg33o")
@@ -56,13 +53,6 @@ polygon = PackedVector2Array(22.0001, 18.9999, 61.0009, 233, -29.9993, 183, -74.
 [node name="Lava" parent="." instance=ExtResource("9_6fot8")]
 z_index = 5
 position = Vector2(664, 110)
-
-[node name="LavaArea" type="Area2D" parent="Lava" groups=["Lava"]]
-
-[node name="LavaCollider" type="CollisionShape2D" parent="Lava/LavaArea"]
-z_index = 10
-position = Vector2(1831, 120)
-shape = SubResource("RectangleShape2D_cy70h")
 
 [node name="Platform" parent="." instance=ExtResource("2_a5exq")]
 position = Vector2(6, 0)
@@ -468,7 +458,6 @@ layer_0/tile_data = PackedInt32Array(524242, 0, 0, 524249, 131072, 0, 524256, 19
 [connection signal="body_entered" from="House" to="House" method="_on_body_entered"]
 [connection signal="body_exited" from="House" to="House" method="_on_body_exited"]
 [connection signal="body_entered" from="House/Roof" to="Player" method="_on_roof_body_entered"]
-[connection signal="body_entered" from="Lava/LavaArea" to="Player" method="_on_lava_area_body_entered"]
 [connection signal="body_entered" from="Obstacles/Enemy" to="Player" method="_on_enemy_body_entered"]
 [connection signal="body_entered" from="Obstacles/Enemy4" to="Player" method="_on_enemy_body_entered"]
 [connection signal="body_entered" from="Obstacles/Enemy3" to="Player" method="_on_enemy_body_entered"]

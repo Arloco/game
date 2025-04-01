@@ -20,7 +20,7 @@ signal healthChanged
 @onready var animator = $"AnimationPlayer"
 
 #Mana System Vars
-@export var mana = 100
+@export var mana = 10000
 @export var regen_rate = 4
 @export var bullet_speed = 1700
 
@@ -29,7 +29,7 @@ var shoot_left = false
 var flip = 1
 var dead = false
 
-var acc = 20
+@export var acc = 20
 
 var is_falling
 var coyote_timer: float = 0.0
@@ -138,6 +138,7 @@ func Mana_And_Weapon(direction, delta):
 		if mana >= 10:
 			add_child(instance)
 			camera.start_shake(5)  # Small shake for shooting
+			velocity.y = 0
 			
 			if flip == 1:
 				shoot_right = true
@@ -149,12 +150,20 @@ func Mana_And_Weapon(direction, delta):
 		instance.linear_velocity.x = bullet_speed
 		shoot_right = false
 		mana -= 10
+		if is_on_floor():
+			velocity.x -= 1000
+		else:
+			velocity.x -= 100
 			
 	if shoot_left == true:
 		instance.linear_velocity.x = -bullet_speed
 		instance.rotation = 820
 		shoot_left = false
 		mana -= 10
+		if is_on_floor():
+			velocity.x += 1000
+		else:
+			velocity.x += 100
 			
 func upgrade_weapon():
 	if Singleton.money >= get_upgrade_cost():
