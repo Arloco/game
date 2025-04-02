@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://bxa7hrhxk3k01"]
 
-[ext_resource type="Script" path="res://Scripts/Area2D.gd" id="1_cngqk"]
-[ext_resource type="Script" path="res://Scripts/outside.gd" id="1_lg33o"]
+[ext_resource type="Script" uid="uid://cvsgk72rtm25s" path="res://Scripts/Area2D.gd" id="1_cngqk"]
+[ext_resource type="Script" uid="uid://cb012jrwkoetu" path="res://Scripts/outside.gd" id="1_lg33o"]
 [ext_resource type="PackedScene" uid="uid://cada8qltwyg5x" path="res://Scenes/platform.tscn" id="2_a5exq"]
 [ext_resource type="Texture2D" uid="uid://c5chflwhldaut" path="res://Art/finalShroomHouse.png" id="2_cxq14"]
 [ext_resource type="Texture2D" uid="uid://bu6dbgmhjoen6" path="res://Art/DoorFinished.jpg" id="3_1pnwu"]

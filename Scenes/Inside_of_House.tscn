@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://x2evdjl1wfyg"]
 
-[ext_resource type="Script" path="res://Scripts/Inside.gd" id="1_jf6ve"]
+[ext_resource type="Script" uid="uid://lxyqsnbcxcaq" path="res://Scripts/Inside.gd" id="1_jf6ve"]
 [ext_resource type="PackedScene" uid="uid://dij0lek2hgkx8" path="res://Scenes/inside_platform.tscn" id="2_n42q6"]
 [ext_resource type="PackedScene" uid="uid://bxjid3dng6x0i" path="res://Scenes/Player.tscn" id="3_0ofhx"]
 [ext_resource type="Texture2D" uid="uid://bu6dbgmhjoen6" path="res://Art/DoorFinished.jpg" id="4_u4vde"]

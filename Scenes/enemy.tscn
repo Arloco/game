@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://pd078ybsmqxo"]
 
-[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_giqkd"]
+[ext_resource type="Script" uid="uid://8vtldmop3isx" path="res://Scripts/enemy.gd" id="1_giqkd"]
 [ext_resource type="Texture2D" uid="uid://dxa5sws6jpxyh" path="res://Art/EnemyArt.png" id="2_ofstl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rgbp2"]
@@ -63,8 +63,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mtn8x"]
 _data = {
-"RESET": SubResource("Animation_gqxxd"),
-"die": SubResource("Animation_ebm73")
+&"RESET": SubResource("Animation_gqxxd"),
+&"die": SubResource("Animation_ebm73")
 }
 
 [node name="Enemy" type="Area2D" groups=["Hurt"]]

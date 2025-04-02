@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b5jdlc28std2u"]
 
 [ext_resource type="Texture2D" uid="uid://biys8ct7ki1e3" path="res://Art/FairyAppleTitleScreen.jpg" id="1_etwvq"]
-[ext_resource type="Script" path="res://Main_Menu/main_menu.gd" id="1_k7umi"]
+[ext_resource type="Script" uid="uid://cfkwnlsq0ucgd" path="res://Main_Menu/main_menu.gd" id="1_k7umi"]
 [ext_resource type="Texture2D" uid="uid://dowo4hr3aipf1" path="res://Art/PlayButton.jpg" id="2_3lgwp"]
 [ext_resource type="Texture2D" uid="uid://bag2ee664wlnt" path="res://Art/HowToPlayButton.jpg" id="3_hh2kk"]
 
@@ -111,8 +111,8 @@ offset_left = 966.0
 offset_top = 40.0
 offset_right = 1085.0
 offset_bottom = 105.0
-theme_override_colors/font_color = Color(1, 0.482353, 0.705882, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0.482353, 0.705882, 1)
 theme_override_constants/outline_size = 7
 theme_override_fonts/font = SubResource("SystemFont_hutwx")
 theme_override_font_sizes/font_size = 40

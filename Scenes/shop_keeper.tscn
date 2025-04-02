@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b3pgejynlqeos"]
 
-[ext_resource type="Script" path="res://Scripts/shop_keeper.gd" id="1_buj0v"]
+[ext_resource type="Script" uid="uid://bgewxbnbbxyf0" path="res://Scripts/shop_keeper.gd" id="1_buj0v"]
 [ext_resource type="Texture2D" uid="uid://dxa5sws6jpxyh" path="res://Art/EnemyArt.png" id="1_f0nhw"]
 [ext_resource type="PackedScene" uid="uid://cfkywnjfs4har" path="res://Scenes/shop.tscn" id="2_2i34d"]
 

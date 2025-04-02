@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bxjid3dng6x0i"]
 
-[ext_resource type="Script" path="res://Scripts/CharacterBody2D.gd" id="1_0o8e2"]
+[ext_resource type="Script" uid="uid://dju1a2ytq3soh" path="res://Scripts/CharacterBody2D.gd" id="1_0o8e2"]
 [ext_resource type="Texture2D" uid="uid://x2xli3n4d42l" path="res://Art/Test.png" id="2_g8q3e"]
-[ext_resource type="Script" path="res://Scripts/camera.gd" id="3_5un7k"]
+[ext_resource type="Script" uid="uid://sddrxchcgysa" path="res://Scripts/camera.gd" id="3_5un7k"]
 [ext_resource type="AnimationLibrary" uid="uid://cisoc8wd2lqeq" path="res://playerAnimations.res" id="4_o8bip"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l7v5d"]

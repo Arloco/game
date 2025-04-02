@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bk23dpsu7drho"]
 
 [ext_resource type="Texture2D" uid="uid://rwdbxnefuo1h" path="res://Art/HeartFrames.png" id="1_3lhqo"]
-[ext_resource type="Script" path="res://Scripts/fairy_apple.gd" id="1_hfjim"]
+[ext_resource type="Script" uid="uid://cytei2kndt46c" path="res://Scripts/fairy_apple.gd" id="1_hfjim"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b7n3c"]
 radius = 36.0139
