@@ -415,6 +415,7 @@ rotation = -0.0872665
 [node name="Player" parent="." instance=ExtResource("3_qpdha")]
 z_index = 100
 position = Vector2(-70, -60)
+scale = Vector2(0.18, 0.18)
 
 [node name="UI" parent="." instance=ExtResource("11_ghu2e")]
 
