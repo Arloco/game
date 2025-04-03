@@ -3,7 +3,7 @@ extends Area2D
 var direction = 1
 @export var health = 10
 var time
-
+var dead
 func _ready() -> void:
 	add_to_group("enemies")
 
@@ -12,6 +12,8 @@ func _process(delta):
 	translate(Vector2.RIGHT * direction)
 	$EnemyArt.flip_h = direction > 0
 	time = delta
+	if dead == true:
+		process_mode = 4
 		
 func _on_timer_timeout():
 	direction *= -1
@@ -23,6 +25,7 @@ func _on_body_entered(body):
 		health -= Singleton.bullet_damage
 		body.queue_free()
 		if health <= 0:
+			dead = true
 			$AnimationPlayer.play("die")
 			
 

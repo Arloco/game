@@ -6,7 +6,7 @@ signal healthChanged
 
 #Jump Vars
 @export var JUMP_VELOCITY = -1500.0 #Jump Speed
-@export var jump_cutoff: float = 0.1  # Controls how much speed is cut off when releasing jump
+@export var jump_cutoff: float = 0.05  # Controls how much speed is cut off when releasing jump
 @export var coyote_time: float = 0.15  # Time (seconds) player can still jump after leaving ground
 @export var jump_buffer_time: float = 0.1  # Time (seconds) the jump input can be buffered
 
@@ -29,7 +29,7 @@ var shoot_left = false
 var flip = 1
 var dead = false
 
-@export var acc = 20
+@export var acc =40
 
 var is_falling
 var coyote_timer: float = 0.0
@@ -51,15 +51,20 @@ func _physics_process(delta):
 		Mana_And_Weapon(direction, delta)
 	
 		Check_if_dead()
+	else:
+		camera.position = position
 	
 func Movement_and_grav(direction, delta):
 	#GRAVITY#
 	if not is_on_floor():
-		if velocity.y > 0:  # Falling down
+		if velocity.y <= 10 and velocity.y >= -10:
+			print("peak")
+			velocity.y += gravity * 0.4 * delta
+		elif velocity.y > 0:  # Falling down
 			is_falling = true
 			velocity.y += gravity * 1.4 * delta  # Increase fall gravity
 		else:  # Going up
-			velocity.y += gravity * delta  # Reduce gravity slightly
+			velocity.y += gravity * 0.9 * delta  # Reduce gravity slightly
 		coyote_timer -= delta  # Reduce coyote time when in air
 	else:
 		coyote_timer = coyote_time  # Reset coyote timer when touching ground
