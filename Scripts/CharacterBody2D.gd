@@ -47,6 +47,11 @@ var jump_buffer_timer: float = 0.0
 
 @onready var object=preload("res://Scenes/Bullet.tscn")
 
+@onready var audio_player = $AudioStreamPlayer2D
+
+var land_sound = preload("res://Sounds/land on ground.mp3")
+var shoot_sound = preload("res://Sounds/shoot.mp3")
+
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis("ui_left", "ui_right")
@@ -103,6 +108,7 @@ func Movement_and_grav(direction, delta):
 		
 		if is_falling == true:
 			if is_on_floor():
+				play_sound(land_sound)
 				animator.play("land on ground")
 				is_falling = false
 				jumps_left = max_jumps #resets double jump
@@ -161,6 +167,7 @@ func Mana_And_Weapon(direction, delta):
 	#detecting input
 	if Input.is_action_just_pressed("shoot"):
 		if mana >= 10:
+			play_sound(shoot_sound)
 			add_child(instance)
 			camera.start_shake(5)  # Small shake for shooting
 			velocity.y = 0
@@ -202,6 +209,9 @@ func upgrade_weapon():
 func get_upgrade_cost() -> int:
 	return Singleton.weapon_level * 20
 
+func play_sound(sound: AudioStream):
+	audio_player.stream = sound  # Set the new sound
+	audio_player.play()  # Play it!
 
 #checking for collisions
 func _on_area_2d_area_entered(area: Area2D) -> void:
