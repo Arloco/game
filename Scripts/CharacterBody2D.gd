@@ -14,6 +14,8 @@ signal healthChanged
 
 @onready var sprite = $Belinda
 
+@onready var jump_particles = $"jump particles"
+
 #health system
 @onready var heartsContainer = $"../UI/HeartsContainer"
 
@@ -28,6 +30,10 @@ var shoot_right = false
 var shoot_left = false
 var flip = 1
 var dead = false
+
+@export var max_jumps: int = 2  # Allows for double jump (set to 3 for triple jump!)
+
+var jumps_left = max_jumps  # Track remaining jumps
 
 @export var acc =40
 
@@ -51,12 +57,15 @@ func _physics_process(delta):
 		Mana_And_Weapon(direction, delta)
 	
 		Check_if_dead()
+	
+	#make camera better after death
 	else:
 		camera.position = position
 	
 func Movement_and_grav(direction, delta):
 	#GRAVITY#
 	if not is_on_floor():
+		#when player is at peak of jump slow down gravity and speed up acceleration
 		if velocity.y <= 10 and velocity.y >= -10:
 			print("peak")
 			velocity.y += gravity * 0.4 * delta
@@ -78,9 +87,12 @@ func Movement_and_grav(direction, delta):
 		if jump_buffer_timer > 0:
 			jump_buffer_timer -= delta  # Reduce buffer time
 			# Jump if we have coyote time left
-			if coyote_timer > 0:
-				#animator.play("Jump")
+			if coyote_timer > 0 or Input.is_action_just_pressed("jump") and jumps_left > 0:
+				jump_particles.restart()  # Restart particles effect
+				jump_particles.emitting = true  # Play particles
+				animator.play("Jump")
 				velocity.y = JUMP_VELOCITY
+				jumps_left -= 1  # Use one jump
 				coyote_timer = 0  # Disable coyote time after jumping
 				jump_buffer_timer = 0  # Reset jump buffer
 
@@ -93,6 +105,7 @@ func Movement_and_grav(direction, delta):
 			if is_on_floor():
 				animator.play("land on ground")
 				is_falling = false
+				jumps_left = max_jumps #resets double jump
 			
 		#MOVEMENT#
 		if Input.is_action_pressed("ui_right"):
@@ -110,18 +123,25 @@ func Movement_and_grav(direction, delta):
 	 
 	move_and_slide()
 
+
+#any thing you want to happen immediatly when they die
 func Check_if_dead():
 	if Singleton.current_health <= 0:
 		dead = true
 		animator.play("Death")
 
+#reseting values and respawing player
 func die():
 	Singleton.max_health = 2
 	Singleton.current_health = Singleton.max_health
 	healthChanged.emit(Singleton.current_health)
 	Singleton.apples_already_eaten.clear()
-
 	get_tree().reload_current_scene()
+
+#after death animation finishes reload scene
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Death":
+		die()
 
 func Mana_And_Weapon(direction, delta):
 	#makes it so we can reference mana from either the outside or the inside if mana_inside == false:
@@ -169,10 +189,10 @@ func Mana_And_Weapon(direction, delta):
 			velocity.x += 1000
 		else:
 			velocity.x += 100
-			
+
+
 func upgrade_weapon():
-	if Singleton.money >= get_upgrade_cost():
-		Singleton.money -= get_upgrade_cost()
+	if Singleton.spend_money(get_upgrade_cost()):
 		Singleton.weapon_level += 1
 		Singleton.bullet_damage += 5
 		print("Weapon upgraded! Level:", Singleton.weapon_level, " | Damage:", Singleton.bullet_damage)
@@ -181,6 +201,7 @@ func upgrade_weapon():
 
 func get_upgrade_cost() -> int:
 	return Singleton.weapon_level * 20
+
 
 #checking for collisions
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -193,6 +214,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		
 	if area.is_in_group("boingy things"):
 		velocity.y = boingy_thing_bounce_speed
+		if jumps_left == 0:
+			jumps_left += 1
 	
 	if area.is_in_group("Lava"):
 		Singleton.current_health -= 1
@@ -203,8 +226,3 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			position.x = -123
 		else:
 			Check_if_dead()
-		
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "Death":
-		die()

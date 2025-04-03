@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://pd078ybsmqxo"]
+[gd_scene load_steps=9 format=3 uid="uid://pd078ybsmqxo"]
 
 [ext_resource type="Script" uid="uid://8vtldmop3isx" path="res://Scripts/enemy.gd" id="1_giqkd"]
 [ext_resource type="Texture2D" uid="uid://dxa5sws6jpxyh" path="res://Art/EnemyArt.png" id="2_ofstl"]
+[ext_resource type="Texture2D" uid="uid://dkb12wuittrq6" path="res://Art/particle.png" id="3_afpow"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rgbp2"]
 radius = 37.0
@@ -67,6 +68,20 @@ _data = {
 &"die": SubResource("Animation_ebm73")
 }
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1f0kj"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 13.01
+angle_min = -290.5
+angle_max = -119.2
+initial_velocity_min = -200.0
+initial_velocity_max = 200.0
+angular_velocity_min = 22.34
+angular_velocity_max = 313.41
+gravity = Vector3(0, 98, 0)
+scale_min = 0.1
+scale_max = 0.2
+
 [node name="Enemy" type="Area2D" groups=["Hurt"]]
 collision_layer = 3
 collision_mask = 3
@@ -91,6 +106,20 @@ process_mode = 3
 libraries = {
 &"": SubResource("AnimationLibrary_mtn8x")
 }
+
+[node name="hit_particles" type="GPUParticles2D" parent="."]
+process_mode = 3
+modulate = Color(0.835294, 0.494118, 0.223529, 1)
+position = Vector2(0.999999, 2)
+rotation = 0.394082
+emitting = false
+amount = 5
+texture = ExtResource("3_afpow")
+lifetime = 0.5
+one_shot = true
+speed_scale = 3.04
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_1f0kj")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

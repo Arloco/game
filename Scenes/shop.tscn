@@ -15,13 +15,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qkkf1")
 
-[node name="money" type="Label" parent="."]
-layout_mode = 0
-offset_left = 129.0
-offset_top = 109.0
-offset_right = 407.0
-offset_bottom = 179.0
-
 [node name="Buy button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 356.0

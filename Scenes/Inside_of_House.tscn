@@ -31,7 +31,6 @@ position = Vector2(-33, 144)
 position = Vector2(-281, 84)
 
 [node name="UI" parent="." instance=ExtResource("5_xlafu")]
-visible = false
 
 [node name="Shop Keeper" parent="." instance=ExtResource("6_xjpbm")]
 position = Vector2(271, 85)
