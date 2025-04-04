@@ -8,15 +8,19 @@ extends CharacterBody2D
 @onready var animator = $"AnimationPlayer"
 @onready var player = $"/root/Inside/Player"  # Adjust path to player
 @onready var jump_timer = $JumpTimer
-@onready var right_leg = $"right leg"
-@onready var left_leg = $"left leg"
-@onready var body = $"body"
-@onready var left_collision = $"damage zone/left leg collision"
-@onready var right_collision = $"damage zone/right leg collision"
+@onready var right_leg = $"flipped/right leg"
+@onready var left_leg = $"flipped/left leg"
+@onready var body = $"flipped/body"
+@onready var left_collision = $"flipped/damage zone/left leg collision"
+@onready var right_collision = $"flipped/damage zone/right leg collision"
+@onready var collision = $"bossy collision"
+@onready var flipped = $flipped
+@onready var collision1 = $"flipped/damage zone/CollisionShape2D2"
+@onready var collision2 = $"flipped/damage zone/CollisionShape2D"
+@onready var collision3 = $"flipped/damage zone/boss collision"
 @export var jump_cooldown := 5.0   # Seconds between jumps
 
 @export var jump_distance := 800.0  # How close to the player to trigger a jump
-
 
 var leg_length: float = 0.18  # Initial leg length
 @export var health: int = 400  # Boss health
@@ -49,6 +53,11 @@ func _physics_process(delta):
 			# Move towards the player
 			var direction = sign(player.global_position.x - global_position.x)
 			velocity.x = direction * speed
+			if velocity.x < 0:
+				flipped.scale.x = -1
+			if velocity.x > 0:
+				flipped.scale.x = 1
+				
 			
 			if second_phase == false:
 				# Jump if close enough, on the ground, and not on cooldown
@@ -89,6 +98,13 @@ func take_damage():
 		right_collision.scale.y = leg_length*5  # Update sprite scale
 		right_collision.position.y += leg_length *140* multiplier
 		
+		collision.scale.y = leg_length*5  # Update sprite scale
+		collision.position.y += leg_length *140* multiplier
+		
+		collision1.position.y += leg_length *210* multiplier
+		collision2.position.y += leg_length *210* multiplier
+		collision3.position.y += leg_length *210* multiplier
+		
 		body.position.y += leg_length * 240 * multiplier
 		multiplier += 0.14
 		print(left_leg.scale.y)
@@ -122,6 +138,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			body.take_damage()  # Call player damage function if colliding
 		if body.is_in_group("Bullets"):
 			take_damage()
+		if body.is_in_group("Lava"):
+			die()
 
 
 func _on_jump_timer_timeout() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cn8eq7hdw46e"]
+[gd_scene load_steps=15 format=3 uid="uid://cn8eq7hdw46e"]
 
 [ext_resource type="Script" uid="uid://dv5y3iuec0qia" path="res://Scripts/boss.gd" id="1_6xxrv"]
 [ext_resource type="Texture2D" uid="uid://bwxivve01fme7" path="res://Art/BossLeg.png" id="2_mh6p8"]
@@ -6,6 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://cmrp6hl0cs5yx" path="res://Art/OrangeBossHead.png" id="5_yq25j"]
 [ext_resource type="Texture2D" uid="uid://d16duorctxe4x" path="res://Art/BossShoe.png" id="6_mh6p8"]
 [ext_resource type="Texture2D" uid="uid://by4r53v37s0vr" path="res://Art/BossArm.png" id="6_odcco"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwfse"]
+size = Vector2(14.3594, 828.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mh6p8"]
+size = Vector2(47.2121, 280.163)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yq25j"]
+size = Vector2(49.75, 78.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtle2"]
+size = Vector2(83.7992, 74.249)
 
 [sub_resource type="Animation" id="Animation_qtle2"]
 length = 0.001
@@ -44,18 +56,9 @@ _data = {
 &"spawn": SubResource("Animation_mh6p8")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwfse"]
-size = Vector2(14.3594, 828.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mh6p8"]
-size = Vector2(47.2121, 335.96)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtle2"]
-size = Vector2(83.7992, 74.249)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cxrok"]
 radius = 19.0
-height = 936.0
+height = 824.0
 
 [node name="boss" type="CharacterBody2D"]
 process_mode = 3
@@ -64,42 +67,71 @@ collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_6xxrv")
 
-[node name="left leg" type="Sprite2D" parent="."]
+[node name="flipped" type="Node2D" parent="."]
+
+[node name="left leg" type="Sprite2D" parent="flipped"]
 position = Vector2(-20, 386)
 rotation = -0.0261799
 scale = Vector2(0.18, 0.18)
 texture = ExtResource("2_mh6p8")
 
-[node name="right leg" type="Sprite2D" parent="."]
+[node name="right leg" type="Sprite2D" parent="flipped"]
 position = Vector2(27, 411)
 rotation = -0.0261799
 scale = Vector2(0.18, 0.18)
 texture = ExtResource("2_mh6p8")
 
-[node name="body" type="Sprite2D" parent="."]
+[node name="body" type="Sprite2D" parent="flipped"]
 position = Vector2(-20.1033, -34.8691)
 scale = Vector2(0.18, 0.18)
 texture = ExtResource("4_qtle2")
 
-[node name="arm" type="Sprite2D" parent="body"]
+[node name="arm" type="Sprite2D" parent="flipped/body"]
 position = Vector2(-22.2222, 233.333)
 rotation = 0.418841
 texture = ExtResource("6_odcco")
 
-[node name="head" type="Sprite2D" parent="body"]
+[node name="head" type="Sprite2D" parent="flipped/body"]
 position = Vector2(88.8889, -894.444)
 rotation = 0.0593412
 texture = ExtResource("5_yq25j")
 
-[node name="right shoe" type="Sprite2D" parent="."]
+[node name="right shoe" type="Sprite2D" parent="flipped"]
 position = Vector2(69, 726)
 scale = Vector2(0.18, 0.18)
 texture = ExtResource("6_mh6p8")
 
-[node name="left shoe" type="Sprite2D" parent="."]
+[node name="left shoe" type="Sprite2D" parent="flipped"]
 position = Vector2(22, 718)
 scale = Vector2(0.18, 0.18)
 texture = ExtResource("6_mh6p8")
+
+[node name="damage zone" type="Area2D" parent="flipped"]
+position = Vector2(1, 1)
+collision_layer = 3
+collision_mask = 3
+
+[node name="left leg collision" type="CollisionShape2D" parent="flipped/damage zone"]
+position = Vector2(27.8203, 324)
+shape = SubResource("RectangleShape2D_wwfse")
+
+[node name="right leg collision" type="CollisionShape2D" parent="flipped/damage zone"]
+position = Vector2(-20, 318)
+shape = SubResource("RectangleShape2D_wwfse")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flipped/damage zone"]
+position = Vector2(1.5348, -57.4272)
+rotation = -0.155334
+shape = SubResource("RectangleShape2D_mh6p8")
+
+[node name="boss collision" type="CollisionShape2D" parent="flipped/damage zone"]
+position = Vector2(1, -146)
+shape = SubResource("RectangleShape2D_yq25j")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="flipped/damage zone"]
+position = Vector2(-80, -55)
+rotation = -0.42586
+shape = SubResource("RectangleShape2D_qtle2")
 
 [node name="JumpTimer" type="Timer" parent="."]
 
@@ -108,32 +140,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_yq25j")
 }
 
-[node name="damage zone" type="Area2D" parent="."]
-position = Vector2(1, 1)
-collision_layer = 3
-collision_mask = 3
-
-[node name="left leg collision" type="CollisionShape2D" parent="damage zone"]
-position = Vector2(27.8203, 324)
-shape = SubResource("RectangleShape2D_wwfse")
-
-[node name="right leg collision" type="CollisionShape2D" parent="damage zone"]
-position = Vector2(-20, 318)
-shape = SubResource("RectangleShape2D_wwfse")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="damage zone"]
-position = Vector2(-2.78139, -84.9899)
-rotation = -0.155334
-shape = SubResource("RectangleShape2D_mh6p8")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="damage zone"]
-position = Vector2(-80, -55)
-rotation = -0.42586
-shape = SubResource("RectangleShape2D_qtle2")
-
 [node name="bossy collision" type="CollisionShape2D" parent="."]
-position = Vector2(8, 269)
+position = Vector2(8, 323)
 shape = SubResource("CapsuleShape2D_cxrok")
 
+[connection signal="body_entered" from="flipped/damage zone" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
-[connection signal="body_entered" from="damage zone" to="." method="_on_area_2d_body_entered"]
