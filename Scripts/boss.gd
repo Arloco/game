@@ -100,7 +100,13 @@ func take_damage():
 		second_phase = true
 		
 	if health <= 0:
-		queue_free()
+		die()
+	
+func die():
+	$/root/Inside/Player.SHAKE(200, 1)
+	await get_tree().create_timer(1).timeout
+	queue_free()
+	get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
 	
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
