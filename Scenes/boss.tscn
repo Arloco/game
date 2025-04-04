@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cn8eq7hdw46e"]
+[gd_scene load_steps=9 format=3 uid="uid://cn8eq7hdw46e"]
 
 [ext_resource type="Texture2D" uid="uid://dl56eq1w4s0og" path="res://icon.svg" id="1_0bnu1"]
 [ext_resource type="Script" uid="uid://dv5y3iuec0qia" path="res://Scripts/boss.gd" id="1_6xxrv"]
-[ext_resource type="Texture2D" uid="uid://cx4xrx5qeagmd" path="res://Art/ShopkeeperHead.png" id="3_cxrok"]
+[ext_resource type="Texture2D" uid="uid://bwxivve01fme7" path="res://Art/BossLeg.png" id="2_mh6p8"]
+[ext_resource type="Texture2D" uid="uid://ch2bygesn25dl" path="res://Art/Boss.png" id="4_qtle2"]
+[ext_resource type="Texture2D" uid="uid://cmrp6hl0cs5yx" path="res://Art/OrangeBossHead.png" id="5_yq25j"]
+[ext_resource type="Texture2D" uid="uid://by4r53v37s0vr" path="res://Art/BossArm.png" id="6_odcco"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwfse"]
 size = Vector2(23.4375, 828.5)
@@ -19,12 +22,12 @@ script = ExtResource("1_6xxrv")
 [node name="leg" type="Sprite2D" parent="."]
 position = Vector2(-12, 425)
 scale = Vector2(0.164062, 6.57031)
-texture = ExtResource("1_0bnu1")
+texture = ExtResource("2_mh6p8")
 
 [node name="Icon4" type="Sprite2D" parent="."]
 position = Vector2(25, 445)
 scale = Vector2(0.164062, 6.57031)
-texture = ExtResource("1_0bnu1")
+texture = ExtResource("2_mh6p8")
 
 [node name="Icon2" type="Sprite2D" parent="."]
 position = Vector2(-30, 855.5)
@@ -37,26 +40,20 @@ scale = Vector2(0.46875, 0.320313)
 texture = ExtResource("1_0bnu1")
 
 [node name="Icon3" type="Sprite2D" parent="."]
-position = Vector2(3, -43)
-scale = Vector2(0.625, 1.34375)
-texture = ExtResource("1_0bnu1")
+position = Vector2(-21, -36)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("4_qtle2")
 
 [node name="Icon6" type="Sprite2D" parent="."]
 position = Vector2(-5, -197)
 scale = Vector2(0.18, 0.18)
-texture = ExtResource("3_cxrok")
+texture = ExtResource("5_yq25j")
 
 [node name="Icon8" type="Sprite2D" parent="."]
-position = Vector2(-60, -16)
+position = Vector2(-25, 6)
 rotation = 0.418841
-scale = Vector2(0.148437, 0.875841)
-texture = ExtResource("1_0bnu1")
-
-[node name="Icon9" type="Sprite2D" parent="."]
-position = Vector2(67.3013, -12.3647)
-rotation = -0.419863
-scale = Vector2(0.148437, 0.922684)
-texture = ExtResource("1_0bnu1")
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("6_odcco")
 
 [node name="JumpTimer" type="Timer" parent="."]
 
