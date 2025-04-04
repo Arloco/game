@@ -23,7 +23,7 @@ extends CharacterBody2D
 @export var jump_distance := 800.0  # How close to the player to trigger a jump
 
 var leg_length: float = 0.18  # Initial leg length
-@export var health: int = 400  # Boss health
+@export var health: int = 325  # Boss health
 
 var can_jump: bool = true  # Cooldown check
 
@@ -128,8 +128,9 @@ func take_damage():
 func die():
 	$/root/Inside/Player.SHAKE(200, 1)
 	await get_tree().create_timer(1).timeout
-	queue_free()
 	get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
+	queue_free()
+	
 	
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -138,8 +139,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			body.take_damage()  # Call player damage function if colliding
 		if body.is_in_group("Bullets"):
 			take_damage()
-		if body.is_in_group("Lava"):
-			die()
+
 
 
 func _on_jump_timer_timeout() -> void:
@@ -150,3 +150,11 @@ func _on_jump_timer_timeout() -> void:
 		timed_out = false
 	else:
 		timed_out = true
+
+
+
+
+
+func _on_damage_zone_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Lava"):
+		die()

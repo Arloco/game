@@ -43,7 +43,7 @@ visible = false
 
 [node name="Player" parent="." instance=ExtResource("3_0ofhx")]
 z_index = 2
-position = Vector2(-281, 116)
+position = Vector2(-525, 115)
 
 [node name="Shop" type="Sprite2D" parent="."]
 position = Vector2(5, 98)

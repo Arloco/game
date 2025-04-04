@@ -24,12 +24,15 @@ func _on_buy_button_pressed():
 	
 func spawn_boss():
 	print("boss spawning")
+	$"/root/Inside/Player".position.x += -240
 	get_tree().paused = false
 	visible = false
-	$"/root/Inside/Shop Keeper".visible = false
-	$"/root/Inside/boss".visible = true
-	$"/root/Inside/Player".SHAKE(200, 1.5)
+	$"/root/Inside/Player".SHAKE(200, 2)
 	Singleton.boss_spawned = true
 	Singleton.boss_spawning = true
+	await get_tree().create_timer(1.6).timeout
+	$"/root/Inside/Shop Keeper".visible = false
+	$"/root/Inside/boss".visible = true
+
 	
 	
