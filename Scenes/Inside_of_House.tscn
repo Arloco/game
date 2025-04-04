@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://x2evdjl1wfyg"]
+[gd_scene load_steps=11 format=3 uid="uid://x2evdjl1wfyg"]
 
 [ext_resource type="Script" uid="uid://lxyqsnbcxcaq" path="res://Scripts/Inside.gd" id="1_jf6ve"]
 [ext_resource type="Script" uid="uid://mjaabmvmve54" path="res://Scenes/inside_of_house.gd" id="1_nisue"]
 [ext_resource type="PackedScene" uid="uid://dij0lek2hgkx8" path="res://Scenes/inside_platform.tscn" id="2_n42q6"]
 [ext_resource type="PackedScene" uid="uid://bxjid3dng6x0i" path="res://Scenes/Player.tscn" id="3_0ofhx"]
+[ext_resource type="Texture2D" uid="uid://t5h1n5wovihp" path="res://Art/Shop.png" id="4_dcaxh"]
 [ext_resource type="Texture2D" uid="uid://bu6dbgmhjoen6" path="res://Art/DoorFinished.jpg" id="4_u4vde"]
 [ext_resource type="PackedScene" uid="uid://1ejm0iih4y48" path="res://Scenes/ui.tscn" id="5_xlafu"]
 [ext_resource type="PackedScene" uid="uid://b3pgejynlqeos" path="res://Scenes/shop_keeper.tscn" id="6_xjpbm"]
@@ -30,6 +31,12 @@ texture = ExtResource("4_u4vde")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0.5, 78)
 shape = SubResource("RectangleShape2D_buh25")
+
+[node name="Shop" type="Sprite2D" parent="."]
+position = Vector2(271, 103)
+rotation = 0.0593412
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("4_dcaxh")
 
 [node name="Shop Keeper" parent="." instance=ExtResource("6_xjpbm")]
 position = Vector2(266, 93)

@@ -54,6 +54,10 @@ var shoot_sound = preload("res://Sounds/shoot.mp3")
 var damage_sound = preload("res://Sounds/damage.mp3")
 var moan_sound = preload("res://Sounds/moan.mp3")
 	
+	
+func _ready() -> void:
+	add_to_group("Player")
+	
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis("ui_left", "ui_right")
