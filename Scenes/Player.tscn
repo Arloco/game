@@ -29,7 +29,8 @@ scale_max = 0.2
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.18, 0.18)
 script = ExtResource("1_0o8e2")
-regen_rate = 5
+mana = 100
+regen_rate = 15
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(52, 81)
