@@ -51,7 +51,9 @@ var jump_buffer_timer: float = 0.0
 
 var land_sound = preload("res://Sounds/land on ground.mp3")
 var shoot_sound = preload("res://Sounds/shoot.mp3")
-
+var damage_sound = preload("res://Sounds/damage.mp3")
+var moan_sound = preload("res://Sounds/moan.mp3")
+	
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis("ui_left", "ui_right")
@@ -115,16 +117,20 @@ func Movement_and_grav(direction, delta):
 			
 		#MOVEMENT#
 		if Input.is_action_pressed("ui_right"):
+			animator.play("Walk_right")
 			if velocity.x < 0:
 				velocity.x = lerp(velocity.x, 0.0, 1)
 			velocity.x = min(velocity.x + acc, SPEED)
 		elif Input.is_action_pressed("ui_left"):
+			animator.play("Walk_left")
 			if velocity.x > 0:
 				velocity.x = lerp(velocity.x, 0.0, 1)
 			velocity.x = max(velocity.x - acc, -SPEED)
 		elif not is_on_floor():
+			animator.stop()
 			velocity.x = lerp(velocity.x, 0.0, 0.1)
 		else:
+			animator.stop()
 			velocity.x = lerp(velocity.x, 0.0, 0.7)
 	 
 	move_and_slide()
@@ -211,16 +217,22 @@ func get_upgrade_cost() -> int:
 
 func play_sound(sound: AudioStream):
 	audio_player.stream = sound  # Set the new sound
-	audio_player.play()  # Play it!
+	audio_player.play()  # Play it
+
+		
+func take_damage():
+	camera.start_shake(50)  # Shake intensity 10
+	Singleton.current_health -= 1
+	healthChanged.emit(Singleton.current_health)
+	print("hurt")
+	velocity.y = -20
+	play_sound(damage_sound)
+	await audio_player.finished
 
 #checking for collisions
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemies"):
-		camera.start_shake(50)  # Shake intensity 10
-		Singleton.current_health -= 1
-		healthChanged.emit(Singleton.current_health)
-		print("hurt")
-		velocity.y = -20
+		take_damage()
 		
 	if area.is_in_group("boingy things"):
 		velocity.y = boingy_thing_bounce_speed
@@ -231,6 +243,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		Singleton.current_health -= 1
 		healthChanged.emit(Singleton.current_health)
 		print("hurt")
+		play_sound(damage_sound)
+		
 		if Singleton.current_health > 0:
 			position.y = -11
 			position.x = -123

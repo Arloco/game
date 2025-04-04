@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-@onready var HeartGuiClass = preload("res://Scenes/heart_gui.tscn")
+var HeartGuiClass = preload("res://Scenes/heart_gui.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -13,7 +13,6 @@ func setMaxHearts(max: int):
 
 func updateHearts(current_health: int):
 	var hearts = get_children()
-	
 	
 	for i in range (Singleton.current_health):
 		hearts[i].update(true)

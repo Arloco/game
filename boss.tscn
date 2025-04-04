@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn8eq7hdw46e"]
+
+[ext_resource type="Texture2D" uid="uid://dl56eq1w4s0og" path="res://icon.svg" id="1_0bnu1"]
+[ext_resource type="Script" uid="uid://dv5y3iuec0qia" path="res://boss.gd" id="1_6xxrv"]
+
+[node name="boss" type="CharacterBody2D"]
+script = ExtResource("1_6xxrv")
+
+[node name="leg" type="Sprite2D" parent="."]
+position = Vector2(-12, 425)
+scale = Vector2(0.164062, 6.57031)
+texture = ExtResource("1_0bnu1")
+
+[node name="Icon4" type="Sprite2D" parent="."]
+position = Vector2(25, 445)
+scale = Vector2(0.164062, 6.57031)
+texture = ExtResource("1_0bnu1")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(-30, 855.5)
+scale = Vector2(0.46875, 0.320313)
+texture = ExtResource("1_0bnu1")
+
+[node name="Icon5" type="Sprite2D" parent="."]
+position = Vector2(41, 858)
+scale = Vector2(0.46875, 0.320313)
+texture = ExtResource("1_0bnu1")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(3, -19)
+scale = Vector2(0.625, 1.34375)
+texture = ExtResource("1_0bnu1")
+
+[node name="Icon6" type="Sprite2D" parent="."]
+position = Vector2(3, -135)
+scale = Vector2(0.625, 0.53125)
+texture = ExtResource("1_0bnu1")
+
+[node name="Icon8" type="Sprite2D" parent="."]
+position = Vector2(-60, -16)
+rotation = 0.418841
+scale = Vector2(0.148437, 0.875841)
+texture = ExtResource("1_0bnu1")
+
+[node name="Icon9" type="Sprite2D" parent="."]
+position = Vector2(67.3013, -12.3647)
+rotation = -0.419863
+scale = Vector2(0.148437, 0.922684)
+texture = ExtResource("1_0bnu1")
+
+[node name="collision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(39, 8, 37, 850, -27, 845, -25, 6)
+
+[node name="JumpTimer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

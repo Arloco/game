@@ -1,15 +1,15 @@
 extends Panel
 
-@onready var sprite = $HeartFrames
+@onready var _sprite: Sprite2D = $HeartFrames
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	print(_sprite)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func update(whole: bool):
-	if whole: sprite.frame = 0
-	else: sprite.frame = 1
+func update(_whole: bool):
+	_sprite.hframes = 3
+	if _whole:
+		print("whole")
+		_sprite.frame = 0  # full heart
+	else:
+		_sprite.frame = 1  # empty heart

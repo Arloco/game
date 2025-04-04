@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://ber6nxec5m87e" path="res://Scripts/Shop.gd" id="1_qkkf1"]
 
 [node name="Control" type="Control"]
+process_mode = 3
+z_index = 4096
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,5 +33,14 @@ offset_top = 222.0
 offset_right = 715.0
 offset_bottom = 297.0
 theme_override_font_sizes/font_size = 40
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 426.0
+offset_right = 786.0
+offset_bottom = 505.0
+theme_override_font_sizes/font_size = 40
+text = "Top Hat"
 
 [connection signal="pressed" from="Buy button" to="." method="_on_buy_button_pressed"]

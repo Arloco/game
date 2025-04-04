@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxjid3dng6x0i"]
+[gd_scene load_steps=10 format=3 uid="uid://bxjid3dng6x0i"]
 
 [ext_resource type="Script" uid="uid://dju1a2ytq3soh" path="res://Scripts/CharacterBody2D.gd" id="1_0o8e2"]
-[ext_resource type="Texture2D" uid="uid://0rlbplx6cnpi" path="res://Art/EnchantedOrchard2.png" id="2_dewec"]
+[ext_resource type="Texture2D" uid="uid://cxf0udm8i3qjh" path="res://Art/BelindaSheet.png" id="2_5ixxa"]
 [ext_resource type="Script" uid="uid://sddrxchcgysa" path="res://Scripts/camera.gd" id="3_5un7k"]
 [ext_resource type="AnimationLibrary" uid="uid://cisoc8wd2lqeq" path="res://playerAnimations.res" id="4_o8bip"]
 [ext_resource type="Texture2D" uid="uid://dkb12wuittrq6" path="res://Art/particle.png" id="5_5ixxa"]
+[ext_resource type="Texture2D" uid="uid://dqq7onvbe1013" path="res://Art/FairyAppleTree.png" id="6_nn08x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l7v5d"]
 radius = 236.0
@@ -36,7 +37,10 @@ position = Vector2(52, 81)
 [node name="Belinda" type="Sprite2D" parent="."]
 position = Vector2(48, -16)
 scale = Vector2(1, 0.965116)
-texture = ExtResource("2_dewec")
+texture = ExtResource("2_5ixxa")
+hframes = 4
+vframes = 2
+frame = 1
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(49, -13)
@@ -74,6 +78,12 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_nn08x")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(22.2222, -627.778)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_nn08x")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
