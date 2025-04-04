@@ -22,8 +22,8 @@ texture_region_size = Vector2i(117, 112)
 4:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_mf6s5"]
-physics_layer_0/collision_layer = 7
-physics_layer_0/collision_mask = 7
+physics_layer_0/collision_layer = 5
+physics_layer_0/collision_mask = 5
 sources/0 = SubResource("TileSetAtlasSource_oxx76")
 
 [node name="Inside Platform" type="Node2D"]
