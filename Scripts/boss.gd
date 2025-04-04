@@ -38,14 +38,13 @@ func _physics_process(delta):
 			print("th")
 			await animator.animation_finished
 			print("thee")
-			Singleton.boss_spawning = false
 			get_tree().paused = false
+			Singleton.boss_spawning = false
 			
-		if Singleton.boss_spawning == false:
+		else:
 			print("theeeee")
 			if not is_on_floor(): 
-				if Singleton.boss_spawning == false:
-					velocity.y += gravity * delta
+				velocity.y += gravity * delta
 		
 			# Move towards the player
 			var direction = sign(player.global_position.x - global_position.x)
@@ -72,6 +71,10 @@ func _reset_jump():
 
 func take_damage():
 	if second_phase == false and Singleton.boss_spawning == false:
+		modulate = Color(255, 0, 0)  # Changes the sprite to red
+		await get_tree().create_timer(0.1).timeout
+		modulate = Color(1, 1, 1)  # Changes the sprite to normal
+		
 		print("d")
 		leg_length -= leg_shrink_rate  # Shrink legs, but not too much
 		left_leg.scale.y = leg_length  # Update sprite scale
@@ -90,6 +93,10 @@ func take_damage():
 		multiplier += 0.14
 		print(left_leg.scale.y)
 	elif second_phase == true:
+		modulate = Color(255, 0, 0)  # Changes the sprite to red
+		await get_tree().create_timer(0.1).timeout
+		modulate = Color(1, 1, 1)  # Changes the sprite to normal
+		
 		health -= Singleton.bullet_damage
 		
 	if left_leg.scale.y <= 0.03:
