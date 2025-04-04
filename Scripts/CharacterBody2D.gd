@@ -53,12 +53,18 @@ var land_sound = preload("res://Sounds/land on ground.mp3")
 var shoot_sound = preload("res://Sounds/shoot.mp3")
 var damage_sound = preload("res://Sounds/damage.mp3")
 var moan_sound = preload("res://Sounds/moan.mp3")
+
+var need_shake = false
 	
 	
 func _ready() -> void:
 	add_to_group("Player")
 	
 func _physics_process(delta):
+	if need_shake == true:
+		SHAKE(200, 1.5)
+		need_shake = false
+	
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis("ui_left", "ui_right")
 	
@@ -154,6 +160,7 @@ func die():
 	Singleton.apples_already_eaten.clear()
 	get_tree().reload_current_scene()
 
+
 #after death animation finishes reload scene
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Death":
@@ -179,7 +186,7 @@ func Mana_And_Weapon(direction, delta):
 		if mana >= 10:
 			play_sound(shoot_sound)
 			add_child(instance)
-			camera.start_shake(5)  # Small shake for shooting
+			SHAKE(5,5)  # Small shake for shooting
 			velocity.y = 0
 			
 			if flip == 1:
@@ -218,6 +225,13 @@ func upgrade_weapon():
 
 func get_upgrade_cost() -> int:
 	return Singleton.weapon_level * 20
+	
+func SHAKE(intensity, cooldown):
+	if camera:
+		camera.start_shake(intensity, cooldown)
+		await camera.done
+	else:
+		need_shake = true
 
 func play_sound(sound: AudioStream):
 	audio_player.stream = sound  # Set the new sound
@@ -225,7 +239,7 @@ func play_sound(sound: AudioStream):
 
 		
 func take_damage():
-	camera.start_shake(50)  # Shake intensity 10
+	SHAKE(50, 5)  # Shake intensity 10
 	Singleton.current_health -= 1
 	healthChanged.emit(Singleton.current_health)
 	print("hurt")

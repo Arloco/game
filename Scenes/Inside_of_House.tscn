@@ -23,6 +23,7 @@ scale = Vector2(1, 1.41438)
 polygon = PackedVector2Array(-2684, 1195, 2261, 1325, 2348, -1223, -2518, -1262)
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-522, -5)
 script = ExtResource("1_jf6ve")
 
 [node name="DoorFinished" type="Sprite2D" parent="Area2D"]
@@ -34,23 +35,23 @@ texture = ExtResource("4_u4vde")
 position = Vector2(0.5, 78)
 shape = SubResource("RectangleShape2D_buh25")
 
-[node name="Shop" type="Sprite2D" parent="."]
-position = Vector2(271, 103)
-rotation = 0.0593412
-scale = Vector2(0.18, 0.18)
-texture = ExtResource("4_dcaxh")
-
 [node name="Shop Keeper" parent="." instance=ExtResource("6_xjpbm")]
-position = Vector2(263, 93)
-
-[node name="Inside Platform" parent="." instance=ExtResource("2_n42q6")]
-position = Vector2(-33, 144)
+position = Vector2(0, 89.1358)
 
 [node name="Player" parent="." instance=ExtResource("3_0ofhx")]
 position = Vector2(-281, 84)
 
 [node name="boss" parent="." instance=ExtResource("7_3ku2y")]
-position = Vector2(252, -528)
+visible = false
+
+[node name="Shop" type="Sprite2D" parent="."]
+position = Vector2(5, 98)
+rotation = 0.0593412
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("4_dcaxh")
+
+[node name="Inside Platform" parent="." instance=ExtResource("2_n42q6")]
+position = Vector2(-33, 144)
 
 [node name="UI" parent="." instance=ExtResource("5_xlafu")]
 

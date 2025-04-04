@@ -7,6 +7,7 @@ var bullet_damage = 10
 var money = 1000
 var weapon_level = 1
 var boss_spawned = false
+var boss_spawning = false
 
 signal money_changed(new_amount)  # Signal for UI updates
 

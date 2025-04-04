@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var gravity: float = 800.0  # Gravity strength
 @export var leg_shrink_rate: float = 0.01  # How much legs shrink per hit
 
+@onready var animator = $"AnimationPlayer"
 @onready var player = $"/root/Inside/Player"  # Adjust path to player
 @onready var jump_timer = $JumpTimer
 @onready var right_leg = $"right leg"
@@ -18,7 +19,7 @@ extends CharacterBody2D
 
 
 var leg_length: float = 0.18  # Initial leg length
-@export var health: int = 50  # Boss health
+@export var health: int = 400  # Boss health
 
 var can_jump: bool = true  # Cooldown check
 
@@ -28,21 +29,26 @@ var second_phase = false
 
 var timed_out = false
 
-func _physics_process(delta):
-	if not is_on_floor() or is_on_player():  
-		velocity.y += gravity * delta
-		
-	# Move towards the player
-	var direction = sign(player.global_position.x - global_position.x)
-	velocity.x = direction * speed
-		
-	if second_phase == false:
-		# Jump if close enough, on the ground, and not on cooldown
-		var distance_to_player = global_position.distance_to(player.global_position)
-		if distance_to_player <= jump_distance and is_on_floor() and not is_on_player() and can_jump:
-			jump()
 
-	move_and_slide()
+func _physics_process(delta):
+	if Singleton.boss_spawned == true:
+		if Singleton.boss_spawning == true:
+			animator.play("spawn")
+			Singleton.boss_spawning = false
+		if not is_on_floor() or is_on_player():  
+			velocity.y += gravity * delta
+			
+		# Move towards the player
+		var direction = sign(player.global_position.x - global_position.x)
+		velocity.x = direction * speed
+			
+		if second_phase == false:
+			# Jump if close enough, on the ground, and not on cooldown
+			var distance_to_player = global_position.distance_to(player.global_position)
+			if distance_to_player <= jump_distance and is_on_floor() and not is_on_player() and can_jump:
+				jump()
+
+		move_and_slide()
 
 # Checks if the boss is standing on the player
 func is_on_player() -> bool:
@@ -83,7 +89,7 @@ func take_damage():
 		body.position.y += leg_length * 240 * multiplier
 		multiplier += 0.14
 		print(left_leg.scale.y)
-	else:
+	elif second_phase == true:
 		health -= Singleton.bullet_damage
 		
 	if left_leg.scale.y <= 0.03:
@@ -98,10 +104,11 @@ func take_damage():
 	
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		body.take_damage()  # Call player damage function if colliding
-	if body.is_in_group("Bullets"):
-		take_damage()
+	if Singleton.boss_spawned == true:
+		if body.is_in_group("Player"):
+			body.take_damage()  # Call player damage function if colliding
+		if body.is_in_group("Bullets"):
+			take_damage()
 
 
 func _on_jump_timer_timeout() -> void:
