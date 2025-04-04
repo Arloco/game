@@ -3,23 +3,30 @@ extends CharacterBody2D
 @export var speed: float = 100.0  # Walking speed
 @export var jump_force: float = -1000.0  # Jump strength
 @export var gravity: float = 800.0  # Gravity strength
-@export var leg_shrink_rate: float = 2.0  # How much legs shrink per hit
+@export var leg_shrink_rate: float = 0.01  # How much legs shrink per hit
 
 @onready var player = $"/root/Inside/Player"  # Adjust path to player
 @onready var jump_timer = $JumpTimer
-@onready var sprite = $Sprite2D
+@onready var right_leg = $"right leg"
+@onready var left_leg = $"left leg"
+@onready var body = $"body"
+@onready var left_collision = $"damage zone/left leg collision"
+@onready var right_collision = $"damage zone/right leg collision"
 @export var jump_cooldown := 5.0   # Seconds between jumps
 
 @export var jump_distance := 800.0  # How close to the player to trigger a jump
 
-var leg_length: float = 50.0  # Initial leg length
-var health: int = 10  # Boss health
+
+var leg_length: float = 0.18  # Initial leg length
+@export var health: int = 50  # Boss health
 
 var can_jump: bool = true  # Cooldown check
 
+var multiplier = 1.0
 
-func _ready():
-	jump_timer.start()  # Start jumping periodically
+var second_phase = false
+
+var timed_out = false
 
 func _physics_process(delta):
 	if not is_on_floor() or is_on_player():  
@@ -29,14 +36,14 @@ func _physics_process(delta):
 	var direction = sign(player.global_position.x - global_position.x)
 	velocity.x = direction * speed
 		
-
-	# Jump if close enough, on the ground, and not on cooldown
-	var distance_to_player = global_position.distance_to(player.global_position)
-	if distance_to_player <= jump_distance and is_on_floor() and not is_on_player() and can_jump:
-		jump()
+	if second_phase == false:
+		# Jump if close enough, on the ground, and not on cooldown
+		var distance_to_player = global_position.distance_to(player.global_position)
+		if distance_to_player <= jump_distance and is_on_floor() and not is_on_player() and can_jump:
+			jump()
 
 	move_and_slide()
-	
+
 # Checks if the boss is standing on the player
 func is_on_player() -> bool:
 	for i in range(get_slide_collision_count()):
@@ -58,13 +65,36 @@ func _reset_jump():
 	can_jump = true  # Re-enable jumping after cooldown
 
 func take_damage():
-	print("d")
-	health -= 1
-	leg_length -= leg_shrink_rate  # Shrink legs, but not too much
-	sprite.scale.y = leg_length / 50.0  # Update sprite scale
-
+	if second_phase == false:
+		print("d")
+		leg_length -= leg_shrink_rate  # Shrink legs, but not too much
+		left_leg.scale.y = leg_length  # Update sprite scale
+		left_leg.position.y += leg_length*110* multiplier
+		
+		left_collision.scale.y = leg_length*5 # Update sprite scale
+		left_collision.position.y += leg_length*140* multiplier
+		
+		right_leg.scale.y = leg_length  # Update sprite scale
+		right_leg.position.y += leg_length*110* multiplier
+		
+		right_collision.scale.y = leg_length*5  # Update sprite scale
+		right_collision.position.y += leg_length *140* multiplier
+		
+		body.position.y += leg_length * 240 * multiplier
+		multiplier += 0.14
+		print(left_leg.scale.y)
+	else:
+		health -= Singleton.bullet_damage
+		
+	if left_leg.scale.y <= 0.03:
+		speed = 300
+		jump_force = -2000
+		gravity = 1600
+		jump_timer.start(1)
+		second_phase = true
+		
 	if health <= 0:
-		queue_free()  # Destroy boss when health is 0
+		queue_free()
 	
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -72,3 +102,13 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.take_damage()  # Call player damage function if colliding
 	if body.is_in_group("Bullets"):
 		take_damage()
+
+
+func _on_jump_timer_timeout() -> void:
+	if is_on_floor() and timed_out == true or is_on_floor():
+		velocity.y = jump_force  # Jump up
+		await get_tree().create_timer(0.5).timeout  # Simulate air time
+		velocity.y += gravity  # Fall faster toward player
+		timed_out = false
+	else:
+		timed_out = true

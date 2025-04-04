@@ -4,8 +4,9 @@ var max_health = 2
 @onready var current_health: float = Singleton.max_health
 var apples_already_eaten = []
 var bullet_damage = 10
-var money = 0
+var money = 1000
 var weapon_level = 1
+var boss_spawned = false
 
 signal money_changed(new_amount)  # Signal for UI updates
 

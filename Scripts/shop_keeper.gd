@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 			get_tree().paused = true
 			shop_open = true  # Update state
 
-	elif shop_open and Input.is_action_just_pressed("select"):
+	elif shop_open and Input.is_action_just_pressed("select") and Singleton.boss_spawned == false:
 		print("Shop closed")
 		get_tree().paused = false
 		$Shop.visible = false
