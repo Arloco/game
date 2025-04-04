@@ -34,9 +34,11 @@ func _physics_process(delta):
 	if Singleton.boss_spawned == true:
 		if Singleton.boss_spawning == true:
 			animator.play("spawn")
+			await animator.animation_finished
 			Singleton.boss_spawning = false
 		if not is_on_floor() or is_on_player():  
-			velocity.y += gravity * delta
+			if Singleton.boss_spawning == false:
+				velocity.y += gravity * delta
 			
 		# Move towards the player
 		var direction = sign(player.global_position.x - global_position.x)
@@ -71,7 +73,7 @@ func _reset_jump():
 	can_jump = true  # Re-enable jumping after cooldown
 
 func take_damage():
-	if second_phase == false:
+	if second_phase == false and Singleton.boss_spawning == false:
 		print("d")
 		leg_length -= leg_shrink_rate  # Shrink legs, but not too much
 		left_leg.scale.y = leg_length  # Update sprite scale
