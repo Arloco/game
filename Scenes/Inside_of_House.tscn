@@ -1,20 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://x2evdjl1wfyg"]
+[gd_scene load_steps=10 format=3 uid="uid://x2evdjl1wfyg"]
 
 [ext_resource type="Script" uid="uid://lxyqsnbcxcaq" path="res://Scripts/Inside.gd" id="1_jf6ve"]
+[ext_resource type="Script" uid="uid://mjaabmvmve54" path="res://Scenes/inside_of_house.gd" id="1_nisue"]
 [ext_resource type="PackedScene" uid="uid://dij0lek2hgkx8" path="res://Scenes/inside_platform.tscn" id="2_n42q6"]
 [ext_resource type="PackedScene" uid="uid://bxjid3dng6x0i" path="res://Scenes/Player.tscn" id="3_0ofhx"]
 [ext_resource type="Texture2D" uid="uid://bu6dbgmhjoen6" path="res://Art/DoorFinished.jpg" id="4_u4vde"]
 [ext_resource type="PackedScene" uid="uid://1ejm0iih4y48" path="res://Scenes/ui.tscn" id="5_xlafu"]
 [ext_resource type="PackedScene" uid="uid://b3pgejynlqeos" path="res://Scenes/shop_keeper.tscn" id="6_xjpbm"]
-[ext_resource type="PackedScene" uid="uid://cn8eq7hdw46e" path="res://boss.tscn" id="7_3ku2y"]
+[ext_resource type="PackedScene" uid="uid://cn8eq7hdw46e" path="res://Scenes/boss.tscn" id="7_3ku2y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buh25"]
 size = Vector2(177, 266)
 
 [node name="Inside" type="Node2D"]
+script = ExtResource("1_nisue")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-visible = false
 position = Vector2(237, -98)
 polygon = PackedVector2Array(-2684, 1195, 2261, 1325, 2348, -1223, -2518, -1262)
 

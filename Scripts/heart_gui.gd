@@ -7,7 +7,7 @@ func _ready():
 	print(_sprite)
 
 func update(_whole: bool):
-	_sprite.hframes = 3
+
 	if _whole:
 		print("whole")
 		_sprite.frame = 0  # full heart
