@@ -34,32 +34,30 @@ func _physics_process(delta):
 	if Singleton.boss_spawned == true:
 		if Singleton.boss_spawning == true:
 			animator.play("spawn")
+			get_tree().paused = true
+			print("th")
 			await animator.animation_finished
+			print("thee")
 			Singleton.boss_spawning = false
-		if not is_on_floor() or is_on_player():  
-			if Singleton.boss_spawning == false:
-				velocity.y += gravity * delta
+			get_tree().paused = false
 			
-		# Move towards the player
-		var direction = sign(player.global_position.x - global_position.x)
-		velocity.x = direction * speed
+		if Singleton.boss_spawning == false:
+			print("theeeee")
+			if not is_on_floor(): 
+				if Singleton.boss_spawning == false:
+					velocity.y += gravity * delta
+		
+			# Move towards the player
+			var direction = sign(player.global_position.x - global_position.x)
+			velocity.x = direction * speed
 			
-		if second_phase == false:
-			# Jump if close enough, on the ground, and not on cooldown
-			var distance_to_player = global_position.distance_to(player.global_position)
-			if distance_to_player <= jump_distance and is_on_floor() and not is_on_player() and can_jump:
-				jump()
+			if second_phase == false:
+				# Jump if close enough, on the ground, and not on cooldown
+				var distance_to_player = global_position.distance_to(player.global_position)
+				if distance_to_player <= jump_distance and is_on_floor() and can_jump:
+					jump()
 
-		move_and_slide()
-
-# Checks if the boss is standing on the player
-func is_on_player() -> bool:
-	for i in range(get_slide_collision_count()):
-		var collision = get_slide_collision(i)
-		if collision.get_collider() == player:
-			print("d")
-			return true
-	return false
+			move_and_slide()
 
 
 func jump():

@@ -38,11 +38,11 @@ shape = SubResource("RectangleShape2D_buh25")
 [node name="Shop Keeper" parent="." instance=ExtResource("6_xjpbm")]
 position = Vector2(0, 89.1358)
 
-[node name="Player" parent="." instance=ExtResource("3_0ofhx")]
-position = Vector2(-281, 84)
-
 [node name="boss" parent="." instance=ExtResource("7_3ku2y")]
 visible = false
+
+[node name="Player" parent="." instance=ExtResource("3_0ofhx")]
+position = Vector2(-281, 84)
 
 [node name="Shop" type="Sprite2D" parent="."]
 position = Vector2(5, 98)

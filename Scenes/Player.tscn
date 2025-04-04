@@ -47,6 +47,7 @@ position = Vector2(49, -13)
 shape = SubResource("CapsuleShape2D_l7v5d")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_mode = 3
 position = Vector2(52, 85)
 zoom = Vector2(0.8, 0.8)
 process_callback = 0
