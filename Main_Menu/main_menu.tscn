@@ -73,6 +73,18 @@ theme_type_variation = &"FlatButton"
 icon = ExtResource("3_hh2kk")
 expand_icon = true
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 855.0
+offset_top = 85.0
+offset_right = 986.0
+offset_bottom = 292.0
+theme_override_colors/font_color = Color(0.822242, 0.146181, 0.772453, 1)
+theme_override_font_sizes/font_size = 120
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Text" type="Label" parent="."]
 visible = false
 layout_mode = 0
@@ -84,13 +96,16 @@ theme_override_colors/font_color = Color(1, 0.483362, 0.704631, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_mfs3t")
-theme_override_font_sizes/font_size = 90
+theme_override_font_sizes/font_size = 46
 text = "How to play:
 WASD to run and jump
+ (you can double jump) 
+and hold W jump higher.
 Space to enter the house
-Click to shoot
-Collect all of the fairy apples to 
-banish the corruption"
+and interact with the shop.
+Click Left Mouse to shoot
+Collect all of the fairy apples
+and banish the corruption."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -117,15 +132,3 @@ theme_override_constants/outline_size = 7
 theme_override_fonts/font = SubResource("SystemFont_hutwx")
 theme_override_font_sizes/font_size = 40
 text = "Close"
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 855.0
-offset_top = 85.0
-offset_right = 986.0
-offset_bottom = 292.0
-theme_override_colors/font_color = Color(0.822242, 0.146181, 0.772453, 1)
-theme_override_font_sizes/font_size = 120
-text = "2"
-horizontal_alignment = 1
-vertical_alignment = 1
