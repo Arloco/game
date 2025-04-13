@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var heartsContainer = $UI/HeartsContainer
+@onready var heartsContainer = $Control/UI/HeartsContainer
 @onready var player = $Player
 @onready var fairyApple1 = $FairyApple1
 @onready var fairyApple2 = $FairyApple2

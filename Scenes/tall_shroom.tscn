@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://lvqajlspi1bg"]
 
-[ext_resource type="Texture2D" uid="uid://d0fcudvj4aidb" path="res://Art/BackgroundShroom.png" id="1_m5570"]
+[ext_resource type="Texture2D" uid="uid://d0fcudvj4aidb" path="res://Art/Enviroment/BackgroundShroom.png" id="1_m5570"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mocyt"]
 radius = 42.5592

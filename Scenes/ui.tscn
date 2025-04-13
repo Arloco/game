@@ -2,17 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://chpyp6r3mwv7l" path="res://Scenes/hearts_container.tscn" id="1_4dxfv"]
 [ext_resource type="PackedScene" uid="uid://rx5dl0y4mmfj" path="res://Scenes/manabar.tscn" id="2_o258g"]
-[ext_resource type="Script" uid="uid://spaoju4d70bt" path="res://Scenes/money_label.gd" id="3_nf4gj"]
+[ext_resource type="Script" uid="uid://spaoju4d70bt" path="res://Scripts/money_label.gd" id="3_nf4gj"]
 
 [node name="UI" type="CanvasLayer"]
 
 [node name="HeartsContainer" parent="." instance=ExtResource("1_4dxfv")]
 
 [node name="ManaBar" parent="." instance=ExtResource("2_o258g")]
-offset_left = 32.0
-offset_top = 545.0
-offset_right = 296.0
-offset_bottom = 617.0
+offset_left = 16.0
+offset_top = 106.0
+offset_right = 236.0
+offset_bottom = 142.0
 
 [node name="Money_label" type="Label" parent="."]
 offset_left = 946.0

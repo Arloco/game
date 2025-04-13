@@ -17,7 +17,7 @@ signal healthChanged
 @onready var jump_particles = $"jump particles"
 
 #health system
-@onready var heartsContainer = $"../UI/HeartsContainer"
+@onready var heartsContainer = $"../Control/UI/HeartsContainer"
 
 @onready var animator = $"AnimationPlayer"
 
@@ -30,6 +30,8 @@ var shoot_right = false
 var shoot_left = false
 var flip = 1
 var dead = false
+
+var jumping = false
 
 @export var max_jumps: int = 2  # Allows for double jump (set to 3 for triple jump!)
 
@@ -66,7 +68,7 @@ func _physics_process(delta):
 		need_shake = false
 	
 	# Get the input direction and handle the movement/deceleration.
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction = Input.get_axis("left", "right")
 	
 	Movement_and_grav(direction, delta)
 	
@@ -105,6 +107,7 @@ func Movement_and_grav(direction, delta):
 			jump_buffer_timer -= delta  # Reduce buffer time
 			# Jump if we have coyote time left
 			if coyote_timer > 0 or Input.is_action_just_pressed("jump") and jumps_left > 0:
+				jumping = true
 				jump_particles.restart()  # Restart particles effect
 				jump_particles.emitting = true  # Play particles
 				animator.play("Jump")
@@ -114,9 +117,9 @@ func Movement_and_grav(direction, delta):
 				jump_buffer_timer = 0  # Reset jump buffer
 
 		# Jump cutoff when the button is released early
-		if Input.is_action_just_released("jump") and velocity.y < 0:
+		if Input.is_action_just_released("jump") and velocity.y < 0 and jumping == true:
 			velocity.y *= jump_cutoff
-			
+			jumping = false
 		
 		if is_falling == true:
 			if is_on_floor():
@@ -126,12 +129,12 @@ func Movement_and_grav(direction, delta):
 				jumps_left = max_jumps #resets double jump
 			
 		#MOVEMENT#
-		if Input.is_action_pressed("ui_right"):
+		if Input.is_action_pressed("right"):
 			animator.play("Walk_right")
 			if velocity.x < 0:
 				velocity.x = lerp(velocity.x, 0.0, 1)
 			velocity.x = min(velocity.x + acc, SPEED)
-		elif Input.is_action_pressed("ui_left"):
+		elif Input.is_action_pressed("left"):
 			animator.play("Walk_left")
 			if velocity.x > 0:
 				velocity.x = lerp(velocity.x, 0.0, 1)
@@ -168,7 +171,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func Mana_And_Weapon(direction, delta):
 	#makes it so we can reference mana from either the outside or the inside if mana_inside == false:
-	$"../UI/ManaBar".value = mana
+	$"../Control/UI/ManaBar".value = mana
 
 	#make it so we can shoot even if not moving
 	if direction > 0:

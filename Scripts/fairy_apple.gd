@@ -1,6 +1,6 @@
 extends Area2D
 @onready var player = $"../Player"
-@onready var heartsContainer = $"../UI/HeartsContainer"
+@onready var heartsContainer = $"../Control/UI/HeartsContainer"
 @onready var heartFrames = $HeartFrames
 @onready var hearts_container = $"."
 signal fairyAppleHealthChanged

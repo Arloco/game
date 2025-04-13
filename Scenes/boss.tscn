@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=3 uid="uid://cn8eq7hdw46e"]
 
 [ext_resource type="Script" uid="uid://dv5y3iuec0qia" path="res://Scripts/boss.gd" id="1_6xxrv"]
-[ext_resource type="Texture2D" uid="uid://bwxivve01fme7" path="res://Art/BossLeg.png" id="2_mh6p8"]
-[ext_resource type="Texture2D" uid="uid://ch2bygesn25dl" path="res://Art/Boss.png" id="4_qtle2"]
-[ext_resource type="Texture2D" uid="uid://cmrp6hl0cs5yx" path="res://Art/OrangeBossHead.png" id="5_yq25j"]
-[ext_resource type="Texture2D" uid="uid://d16duorctxe4x" path="res://Art/BossShoe.png" id="6_mh6p8"]
-[ext_resource type="Texture2D" uid="uid://by4r53v37s0vr" path="res://Art/BossArm.png" id="6_odcco"]
+[ext_resource type="Texture2D" uid="uid://bwxivve01fme7" path="res://Art/boss_art/BossLeg.png" id="2_mh6p8"]
+[ext_resource type="Texture2D" uid="uid://ch2bygesn25dl" path="res://Art/boss_art/Boss.png" id="4_qtle2"]
+[ext_resource type="Texture2D" uid="uid://cmrp6hl0cs5yx" path="res://Art/boss_art/OrangeBossHead.png" id="5_yq25j"]
+[ext_resource type="Texture2D" uid="uid://d16duorctxe4x" path="res://Art/boss_art/BossShoe.png" id="6_mh6p8"]
+[ext_resource type="Texture2D" uid="uid://by4r53v37s0vr" path="res://Art/boss_art/BossArm.png" id="6_odcco"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwfse"]
 size = Vector2(14.3594, 828.5)

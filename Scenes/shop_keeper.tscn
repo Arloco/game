@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgewxbnbbxyf0" path="res://Scripts/shop_keeper.gd" id="1_buj0v"]
 [ext_resource type="PackedScene" uid="uid://cfkywnjfs4har" path="res://Scenes/shop.tscn" id="2_2i34d"]
-[ext_resource type="Texture2D" uid="uid://b3w4dqpchy0i" path="res://Art/EnchantedOrchard2.jpg" id="2_ggbpv"]
+[ext_resource type="Texture2D" uid="uid://b3w4dqpchy0i" path="res://Art/shopkeeper/EnchantedOrchard2.jpg" id="2_ggbpv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uk40t"]
 size = Vector2(290, 225.5)
