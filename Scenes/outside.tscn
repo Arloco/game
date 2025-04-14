@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bxa7hrhxk3k01"]
+[gd_scene load_steps=19 format=3 uid="uid://bxa7hrhxk3k01"]
 
 [ext_resource type="Script" uid="uid://cvsgk72rtm25s" path="res://Scripts/Area2D.gd" id="1_cngqk"]
 [ext_resource type="Script" uid="uid://cb012jrwkoetu" path="res://Scripts/outside.gd" id="1_lg33o"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bxjid3dng6x0i" path="res://Scenes/Player.tscn" id="3_qpdha"]
 [ext_resource type="PackedScene" uid="uid://pd078ybsmqxo" path="res://Scenes/enemy.tscn" id="6_i643u"]
 [ext_resource type="PackedScene" uid="uid://b5sretkyka12r" path="res://Scenes/spring.tscn" id="7_akf3n"]
+[ext_resource type="Script" uid="uid://cn4wkdomv6hfs" path="res://Scenes/obsticle_manager.gd" id="7_r20i3"]
 [ext_resource type="PackedScene" uid="uid://lvqajlspi1bg" path="res://Scenes/tall_shroom.tscn" id="8_gp6bx"]
 [ext_resource type="PackedScene" uid="uid://clk1j0smqjx5p" path="res://Scenes/lava.tscn" id="9_6fot8"]
 [ext_resource type="PackedScene" uid="uid://1ejm0iih4y48" path="res://Scenes/ui.tscn" id="11_ghu2e"]
@@ -59,6 +60,7 @@ position = Vector2(664, 110)
 position = Vector2(6, 0)
 
 [node name="Obstacles" type="Node" parent="."]
+script = ExtResource("7_r20i3")
 
 [node name="Enemy" parent="Obstacles" instance=ExtResource("6_i643u")]
 z_index = 2
