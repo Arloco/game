@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://m4s8v1evgilm"]
+
+[ext_resource type="Texture2D" uid="uid://lo326cfecubi" path="res://Art/Enviroment/lilshroom.png" id="1_0awqa"]
+
+[node name="Lilshroom" type="Sprite2D"]
+z_index = 101
+rotation = 0.0523599
+scale = Vector2(0.141954, 0.141954)
+texture = ExtResource("1_0awqa")

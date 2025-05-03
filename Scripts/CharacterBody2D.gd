@@ -19,10 +19,12 @@ signal healthChanged
 #health system
 @onready var heartsContainer = $"../Control/UI/HeartsContainer"
 
+@onready var manaCont = $"../Control/UI/ManaBar"
+
 @onready var animator = $"AnimationPlayer"
 
 #Mana System Vars
-@export var mana = 10000
+@export var mana = 100
 @export var regen_rate = 4
 @export var bullet_speed = 1700
 
@@ -179,7 +181,7 @@ func Mana_And_Weapon(direction, delta):
 	if direction < 0:
 		flip = -1
 	
-	if mana < 100:
+	if mana < Singleton.max_mana:
 		mana += regen_rate*delta
 
 	var instance = object.instantiate()
@@ -222,12 +224,25 @@ func upgrade_weapon():
 	if Singleton.spend_money(get_upgrade_cost()):
 		Singleton.weapon_level += 1
 		Singleton.bullet_damage += 5
+		Singleton.bullet_red += 0.1
 		print("Weapon upgraded! Level:", Singleton.weapon_level, " | Damage:", Singleton.bullet_damage)
+	else:
+		print("Not enough money!")
+		
+func upgrade_mana():
+	if Singleton.spend_money(get_mana_upgrade_cost()):
+		Singleton.mana_level += 1
+		Singleton.max_mana += 25
+		manaCont.size.x += 50
+		mana = Singleton.max_mana
 	else:
 		print("Not enough money!")
 
 func get_upgrade_cost() -> int:
 	return Singleton.weapon_level * 20
+	
+func get_mana_upgrade_cost() -> int:
+	return Singleton.mana_level * 20
 	
 func SHAKE(intensity, cooldown):
 	if camera:

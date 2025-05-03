@@ -6,8 +6,12 @@ var apples_already_eaten = []
 var bullet_damage = 10
 var money = 10
 var weapon_level = 1
+var mana_level = 1
 var boss_spawned = false
 var boss_spawning = false
+var bullet_red = 0
+var max_mana = 100
+
 
 signal money_changed(new_amount)  # Signal for UI updates
 

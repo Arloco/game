@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bxa7hrhxk3k01"]
+[gd_scene load_steps=20 format=3 uid="uid://bxa7hrhxk3k01"]
 
 [ext_resource type="Script" uid="uid://cvsgk72rtm25s" path="res://Scripts/Area2D.gd" id="1_cngqk"]
 [ext_resource type="Script" uid="uid://cb012jrwkoetu" path="res://Scripts/outside.gd" id="1_lg33o"]
@@ -8,15 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://bxjid3dng6x0i" path="res://Scenes/Player.tscn" id="3_qpdha"]
 [ext_resource type="PackedScene" uid="uid://pd078ybsmqxo" path="res://Scenes/enemy.tscn" id="6_i643u"]
 [ext_resource type="PackedScene" uid="uid://b5sretkyka12r" path="res://Scenes/spring.tscn" id="7_akf3n"]
-[ext_resource type="Script" uid="uid://cn4wkdomv6hfs" path="res://Scenes/obsticle_manager.gd" id="7_r20i3"]
+[ext_resource type="Script" uid="uid://cn4wkdomv6hfs" path="res://Scripts/obsticle_manager.gd" id="7_r20i3"]
 [ext_resource type="PackedScene" uid="uid://lvqajlspi1bg" path="res://Scenes/tall_shroom.tscn" id="8_gp6bx"]
 [ext_resource type="PackedScene" uid="uid://clk1j0smqjx5p" path="res://Scenes/lava.tscn" id="9_6fot8"]
 [ext_resource type="PackedScene" uid="uid://1ejm0iih4y48" path="res://Scenes/ui.tscn" id="11_ghu2e"]
-[ext_resource type="Texture2D" uid="uid://lo326cfecubi" path="res://Art/Enviroment/lilshroom.png" id="13_0ys0b"]
 [ext_resource type="Texture2D" uid="uid://dqq7onvbe1013" path="res://Art/Enviroment/FairyAppleTree.png" id="14_51inw"]
 [ext_resource type="PackedScene" uid="uid://bk23dpsu7drho" path="res://Scenes/fairy_apple.tscn" id="14_fuibi"]
 [ext_resource type="PackedScene" uid="uid://dcer7mwavubm5" path="res://Scenes/HousePlatform.tscn" id="15_du8hi"]
 [ext_resource type="PackedScene" uid="uid://drub1kngj5cm3" path="res://Scenes/touch_controls.tscn" id="16_1uw6u"]
+[ext_resource type="PackedScene" uid="uid://m4s8v1evgilm" path="res://Scenes/lilshroom.tscn" id="17_e2imq"]
+[ext_resource type="Texture2D" uid="uid://bndrqg1xahj4s" path="res://Art/Enviroment/FinalSpring.png" id="18_sjyhx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buh25"]
 size = Vector2(193.75, 255)
@@ -25,7 +26,8 @@ size = Vector2(193.75, 255)
 script = ExtResource("1_lg33o")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(167, -1109)
+position = Vector2(167, -1106)
+color = Color(0.984546, 0.984547, 0.984546, 1)
 polygon = PackedVector2Array(10254, -4460, 10254, 6192, -7102, 6446, -7102, -4502)
 
 [node name="House" type="Area2D" parent="."]
@@ -419,13 +421,6 @@ rotation = -0.0872665
 z_index = 100
 position = Vector2(-70, -60)
 
-[node name="Lilshroom" type="Sprite2D" parent="."]
-z_index = 101
-position = Vector2(-511, 24)
-rotation = 0.0523599
-scale = Vector2(0.141954, 0.141954)
-texture = ExtResource("13_0ys0b")
-
 [node name="FairyApple1" parent="." instance=ExtResource("14_fuibi")]
 position = Vector2(8223, -1229)
 apple_number = 1
@@ -465,6 +460,22 @@ offset_bottom = 40.0
 [node name="UI" parent="Control" instance=ExtResource("11_ghu2e")]
 
 [node name="TouchControls" parent="Control" instance=ExtResource("16_1uw6u")]
+
+[node name="Lilshroom2" parent="." instance=ExtResource("17_e2imq")]
+position = Vector2(-559, 26)
+
+[node name="Lilshroom3" parent="." instance=ExtResource("17_e2imq")]
+position = Vector2(1209, -1043)
+flip_h = true
+
+[node name="Lilshroom4" parent="." instance=ExtResource("17_e2imq")]
+position = Vector2(1275, -1041)
+rotation = 0.0973211
+
+[node name="little mush" type="Sprite2D" parent="."]
+position = Vector2(1325, -1020)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("18_sjyhx")
 
 [connection signal="body_entered" from="House" to="House" method="_on_body_entered"]
 [connection signal="body_exited" from="House" to="House" method="_on_body_exited"]

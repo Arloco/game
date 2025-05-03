@@ -1,7 +1,10 @@
-[gd_scene format=3 uid="uid://rx5dl0y4mmfj"]
+[gd_scene load_steps=2 format=3 uid="uid://rx5dl0y4mmfj"]
+
+[ext_resource type="Script" uid="uid://c43l7e4dfhxuf" path="res://Scripts/manabar.gd" id="1_1cx43"]
 
 [node name="HScrollBar" type="HScrollBar"]
 offset_left = -693.0
 offset_top = 311.0
 offset_right = -429.0
 offset_bottom = 383.0
+script = ExtResource("1_1cx43")

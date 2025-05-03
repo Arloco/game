@@ -1,8 +1,8 @@
 extends Control
 
 @onready var player = $/root/Inside/Player  # Reference the Player node
-@onready var upgrade_cost_label = $"upgrade cost"
-@onready var buy_button = $"Buy button"
+@onready var weapon_cost_label = $"Weapon cost"
+@onready var mana_cost_label = $"mana cost"
 var boss_scene = preload("res://Scenes/boss.tscn")
 
 func _ready():
@@ -11,16 +11,9 @@ func _ready():
 		spawn_boss()
 
 func update_ui():
-	upgrade_cost_label.text = "Upgrade Cost: $" + str(player.get_upgrade_cost())
+	weapon_cost_label.text = "Upgrade Cost: $" + str(player.get_upgrade_cost())
+	mana_cost_label.text = "Mana Cost: $" + str(player.get_mana_upgrade_cost())
 
-func _on_buy_button_pressed():
-	if Singleton.weapon_level >= 5:
-		spawn_boss()
-
-	
-	
-	player.upgrade_weapon()
-	update_ui()
 	
 func spawn_boss():
 	print("boss spawning")
@@ -35,4 +28,15 @@ func spawn_boss():
 	$"/root/Inside/boss".visible = true
 
 	
-	
+
+func _on_weapon_button_pressed() -> void:
+	if Singleton.weapon_level >= 5:
+		spawn_boss()
+
+	player.upgrade_weapon()
+	update_ui()
+
+
+func _on_mana_button_pressed() -> void:
+	player.upgrade_mana()
+	update_ui()
